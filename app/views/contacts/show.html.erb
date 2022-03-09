@@ -54,26 +54,6 @@
         <%= @the_contact.phone_number %>
       </dd>
 
-      <dt>
-        Owner
-      </dt>
-      <dd>
-        <%= @the_contact.owner_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_contact.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_contact.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -126,14 +106,6 @@
         </label>
 
         <input type="text" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
-      </div>
-
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_contact.owner_id %>">
       </div>
 
       <button>

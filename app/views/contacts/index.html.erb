@@ -55,14 +55,6 @@
         <input type="text" id="phone_number_box" name="query_phone_number">
       </div>
 
-      <div>
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="query_owner_id">
-      </div>
-
       <button>
         Create contact
       </button>
@@ -100,18 +92,6 @@
         </th>
 
         <th>
-          Owner
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
@@ -139,17 +119,6 @@
 
         <td>
           <%= a_contact.phone_number %>
-        </td>
-
-        <td>
-          <%= a_contact.owner_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_contact.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_contact.updated_at) %> ago
         </td>
 
         <td>

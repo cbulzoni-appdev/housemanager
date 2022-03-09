@@ -142,14 +142,6 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
@@ -192,14 +184,7 @@
         </td>
 
         <td>
-          <%= an_appliance.house_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_appliance.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_appliance.updated_at) %> ago
+          <%= an_appliance.house.street_address %>
         </td>
 
         <td>

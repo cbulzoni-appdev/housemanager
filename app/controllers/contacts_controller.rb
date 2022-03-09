@@ -24,7 +24,7 @@ class ContactsController < ApplicationController
     the_contact.contact_type = params.fetch("query_contact_type")
     the_contact.email = params.fetch("query_email")
     the_contact.phone_number = params.fetch("query_phone_number")
-    the_contact.owner_id = params.fetch("query_owner_id")
+    the_contact.owner_id = @current_user.id
 
     if the_contact.valid?
       the_contact.save
@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
     the_contact.contact_type = params.fetch("query_contact_type")
     the_contact.email = params.fetch("query_email")
     the_contact.phone_number = params.fetch("query_phone_number")
-    the_contact.owner_id = params.fetch("query_owner_id")
+    the_contact.owner_id = @current_user.id
 
     if the_contact.valid?
       the_contact.save
