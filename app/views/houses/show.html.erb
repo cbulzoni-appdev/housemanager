@@ -1,0 +1,149 @@
+<div>
+  <div>
+    <h1>
+      House #<%= @the_house.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/houses">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_house/<%= @the_house.id %>">
+          Delete house
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Street address
+      </dt>
+      <dd>
+        <%= @the_house.street_address %>
+      </dd>
+
+      <dt>
+        City
+      </dt>
+      <dd>
+        <%= @the_house.city %>
+      </dd>
+
+      <dt>
+        State
+      </dt>
+      <dd>
+        <%= @the_house.state %>
+      </dd>
+
+      <dt>
+        Zip code
+      </dt>
+      <dd>
+        <%= @the_house.zip_code %>
+      </dd>
+
+      <dt>
+        Purchase date
+      </dt>
+      <dd>
+        <%= @the_house.purchase_date %>
+      </dd>
+
+      <dt>
+        Primary residence
+      </dt>
+      <dd>
+        <%= @the_house.primary_residence %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_house.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_house.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit house
+    </h2>
+
+    <form action="/modify_house/<%= @the_house.id %>"  method="post" >
+      <div>
+        <label for="street_address_box">
+          Street address
+        </label>
+
+        <input type="text" id="street_address_box" name="query_street_address" value="<%= @the_house.street_address %>">
+      </div>
+
+      <div>
+        <label for="city_box">
+          City
+        </label>
+
+        <input type="text" id="city_box" name="query_city" value="<%= @the_house.city %>">
+      </div>
+
+      <div>
+        <label for="state_box">
+          State
+        </label>
+
+        <input type="text" id="state_box" name="query_state" value="<%= @the_house.state %>">
+      </div>
+
+      <div>
+        <label for="zip_code_box">
+          Zip code
+        </label>
+
+        <input type="text" id="zip_code_box" name="query_zip_code" value="<%= @the_house.zip_code %>">
+      </div>
+
+      <div>
+        <label for="purchase_date_box">
+          Purchase date
+        </label>
+
+        <input type="date" id="purchase_date_box" name="query_purchase_date" value="<%= @the_house.purchase_date %>">
+      </div>
+
+      <div>
+        <label for="primary_residence_box">
+          Primary residence
+        </label>
+
+        <select type="text" id="primary_residence_box" name="query_primary_residence" value="<%= @the_house.primary_residence %>">
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <button>
+        Update house
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

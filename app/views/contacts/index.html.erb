@@ -1,0 +1,166 @@
+<div>
+  <div>
+    <h1>
+      List of all contacts
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new contact
+    </h2>
+
+    <form action="/insert_contact" method="post">
+      <div>
+        <label for="company_name_box">
+          Company name
+        </label>
+
+        <input type="text" id="company_name_box" name="query_company_name">
+      </div>
+
+      <div>
+        <label for="contact_name_box">
+          Contact name
+        </label>
+
+        <input type="text" id="contact_name_box" name="query_contact_name">
+      </div>
+
+      <div>
+        <label for="contact_type_box">
+          Contact type
+        </label>
+
+        <input type="text" id="contact_type_box" name="query_contact_type">
+      </div>
+
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email">
+      </div>
+
+      <div>
+        <label for="phone_number_box">
+          Phone number
+        </label>
+
+        <input type="text" id="phone_number_box" name="query_phone_number">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id">
+      </div>
+
+      <button>
+        Create contact
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Company name
+        </th>
+
+        <th>
+          Contact name
+        </th>
+
+        <th>
+          Contact type
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Phone number
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_contacts.each do |a_contact| %>
+      <tr>
+        <td>
+          <%= a_contact.id %>
+        </td>
+
+        <td>
+          <%= a_contact.company_name %>
+        </td>
+
+        <td>
+          <%= a_contact.contact_name %>
+        </td>
+
+        <td>
+          <%= a_contact.contact_type %>
+        </td>
+
+        <td>
+          <%= a_contact.email %>
+        </td>
+
+        <td>
+          <%= a_contact.phone_number %>
+        </td>
+
+        <td>
+          <%= a_contact.owner_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_contact.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_contact.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/contacts/<%= a_contact.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

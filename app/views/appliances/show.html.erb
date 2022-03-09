@@ -1,0 +1,183 @@
+<div>
+  <div>
+    <h1>
+      Appliance #<%= @the_appliance.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/appliances">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_appliance/<%= @the_appliance.id %>">
+          Delete appliance
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_appliance.category %>
+      </dd>
+
+      <dt>
+        Appliance type
+      </dt>
+      <dd>
+        <%= @the_appliance.appliance_type %>
+      </dd>
+
+      <dt>
+        Make
+      </dt>
+      <dd>
+        <%= @the_appliance.make %>
+      </dd>
+
+      <dt>
+        Model
+      </dt>
+      <dd>
+        <%= @the_appliance.model %>
+      </dd>
+
+      <dt>
+        Year
+      </dt>
+      <dd>
+        <%= @the_appliance.year %>
+      </dd>
+
+      <dt>
+        Last serviced
+      </dt>
+      <dd>
+        <%= @the_appliance.last_serviced %>
+      </dd>
+
+      <dt>
+        Service due
+      </dt>
+      <dd>
+        <%= @the_appliance.service_due %>
+      </dd>
+
+      <dt>
+        Notes
+      </dt>
+      <dd>
+        <%= @the_appliance.notes %>
+      </dd>
+
+      <dt>
+        House
+      </dt>
+      <dd>
+        <%= @the_appliance.house_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_appliance.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_appliance.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit appliance
+    </h2>
+
+    <form action="/modify_appliance/<%= @the_appliance.id %>"  method="post" >
+      <div>
+        <label for="category_box">
+          Category
+        </label>
+
+        <input type="text" id="category_box" name="query_category" value="<%= @the_appliance.category %>">
+      </div>
+
+      <div>
+        <label for="appliance_type_box">
+          Appliance type
+        </label>
+
+        <input type="text" id="appliance_type_box" name="query_appliance_type" value="<%= @the_appliance.appliance_type %>">
+      </div>
+
+      <div>
+        <label for="make_box">
+          Make
+        </label>
+
+        <input type="text" id="make_box" name="query_make" value="<%= @the_appliance.make %>">
+      </div>
+
+      <div>
+        <label for="model_box">
+          Model
+        </label>
+
+        <input type="text" id="model_box" name="query_model" value="<%= @the_appliance.model %>">
+      </div>
+
+      <div>
+        <label for="year_box">
+          Year
+        </label>
+
+        <input type="text" id="year_box" name="query_year" value="<%= @the_appliance.year %>">
+      </div>
+
+      <div>
+        <label for="last_serviced_box">
+          Last serviced
+        </label>
+
+        <input type="date" id="last_serviced_box" name="query_last_serviced" value="<%= @the_appliance.last_serviced %>">
+      </div>
+
+      <div>
+        <label for="notes_box">
+          Notes
+        </label>
+
+        <textarea id="notes_box" name="query_notes"><%= @the_appliance.notes %></textarea>
+      </div>
+
+      <div>
+        <label for="house_id_box">
+          House
+        </label>
+
+        <input type="text" id="house_id_box" name="query_house_id" value="<%= @the_appliance.house_id %>">
+      </div>
+
+      <button>
+        Update appliance
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

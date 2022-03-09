@@ -1,0 +1,146 @@
+<div>
+  <div>
+    <h1>
+      Contact #<%= @the_contact.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/contacts">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_contact/<%= @the_contact.id %>">
+          Delete contact
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Company name
+      </dt>
+      <dd>
+        <%= @the_contact.company_name %>
+      </dd>
+
+      <dt>
+        Contact name
+      </dt>
+      <dd>
+        <%= @the_contact.contact_name %>
+      </dd>
+
+      <dt>
+        Contact type
+      </dt>
+      <dd>
+        <%= @the_contact.contact_type %>
+      </dd>
+
+      <dt>
+        Email
+      </dt>
+      <dd>
+        <%= @the_contact.email %>
+      </dd>
+
+      <dt>
+        Phone number
+      </dt>
+      <dd>
+        <%= @the_contact.phone_number %>
+      </dd>
+
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <%= @the_contact.owner_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_contact.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_contact.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit contact
+    </h2>
+
+    <form action="/modify_contact/<%= @the_contact.id %>"  method="post" >
+      <div>
+        <label for="company_name_box">
+          Company name
+        </label>
+
+        <input type="text" id="company_name_box" name="query_company_name" value="<%= @the_contact.company_name %>">
+      </div>
+
+      <div>
+        <label for="contact_name_box">
+          Contact name
+        </label>
+
+        <input type="text" id="contact_name_box" name="query_contact_name" value="<%= @the_contact.contact_name %>">
+      </div>
+
+      <div>
+        <label for="contact_type_box">
+          Contact type
+        </label>
+
+        <input type="text" id="contact_type_box" name="query_contact_type" value="<%= @the_contact.contact_type %>">
+      </div>
+
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email" value="<%= @the_contact.email %>">
+      </div>
+
+      <div>
+        <label for="phone_number_box">
+          Phone number
+        </label>
+
+        <input type="text" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
+      </div>
+
+      <div>
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="query_owner_id" value="<%= @the_contact.owner_id %>">
+      </div>
+
+      <button>
+        Update contact
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
