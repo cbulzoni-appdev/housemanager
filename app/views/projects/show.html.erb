@@ -27,6 +27,28 @@
       </dd>
 
       <dt>
+        Contact
+      </dt>
+      <% if @the_project.contact_id != nil %>
+          <% if @the_project.contact.contact_name != nil %>
+            <dd>
+              <a class="btn btn-primary" href="/contacts/<%= @the_project.contact.id %>" role="button">
+                <%= @the_project.contact.contact_name %>
+              </a>
+            </td>
+          <% else %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= @the_project.contact.id %>" role="button">
+                <%= @the_project.contact.company_name %>
+              </a>
+            </dd>
+          <% end %>
+        <% else %>
+          <dd>
+          </dd>
+        <% end %>
+
+      <dt>
         Status
       </dt>
       <dd>
@@ -58,22 +80,9 @@
         House
       </dt>
       <dd>
-        <%= @the_project.house_id %>
+        <%= @the_project.house.street_address %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_project.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_project.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -88,6 +97,19 @@
     </h2>
 
     <form action="/modify_project/<%= @the_project.id %>"  method="post" >
+
+      <div>
+        <label for="house_id_box">
+          House
+        </label>
+        
+        <select type="text" id="house_id_box" name="query_house_id">
+        <% @current_user.houses.each do |a_house|%>
+          <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
+        <% end %>
+        </select>
+      </div>
+
       <div>
         <label for="description_box">
           Description
@@ -134,6 +156,22 @@
         </label>
 
         <input type="text" id="house_id_box" name="query_house_id" value="<%= @the_project.house_id %>">
+      </div>
+
+      <div>
+        <label for="contact_id_box">
+          Contact
+        </label>
+        
+        <select type="text" id="contact_id_box" name="query_contact_id">
+        <% @current_user.contacts.each do |a_contact|%>
+          <% if a_contact.contact_name != nil %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+          <% else %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+          <% end %>
+        <% end %>
+        </select>
       </div>
 
       <button>

@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
     the_project.date_completed = params.fetch("query_date_completed")
     the_project.notes = params.fetch("query_notes")
     the_project.house_id = params.fetch("query_house_id")
+    the_project.contact_id = params.fetch("query_contact_id")
 
     if the_project.valid?
       the_project.save
@@ -44,6 +45,7 @@ class ProjectsController < ApplicationController
     the_project.date_completed = params.fetch("query_date_completed")
     the_project.notes = params.fetch("query_notes")
     the_project.house_id = params.fetch("query_house_id")
+    the_project.contact_id = params.fetch("query_contact_id")
 
     if the_project.valid?
       the_project.save

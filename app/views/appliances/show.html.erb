@@ -165,6 +165,22 @@
         <textarea id="notes_box" name="query_notes"><%= @the_appliance.notes %></textarea>
       </div>
 
+      <div>
+        <label for="contact_id_box">
+          Contact
+        </label>
+        
+        <select type="text" id="contact_id_box" name="query_contact_id">
+        <% @current_user.contacts.each do |a_contact|%>
+          <% if a_contact.contact_name != nil %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+          <% else %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+          <% end %>
+        <% end %>
+        </select>
+      </div>
+
       <button>
         Update appliance
       </button>

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all projects
+      My Projects
     </h1>
   </div>
 </div>
@@ -15,6 +15,19 @@
     </h2>
 
     <form action="/insert_project" method="post">
+
+      <div>
+        <label for="house_id_box">
+          House
+        </label>
+        
+        <select type="text" id="house_id_box" name="query_house_id">
+        <% @current_user.houses.each do |a_house|%>
+          <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
+        <% end %>
+        </select>
+      </div>
+
       <div>
         <label for="description_box">
           Description
@@ -28,7 +41,11 @@
           Status
         </label>
 
-        <input type="text" id="status_box" name="query_status">
+        <select type="text" id="status_box" name="query_status">
+          <option value ="Not Yet Started">Not Yet Started</option>
+          <option value ="In Progress">In Progress</option>
+          <option value ="Completed">Completed</option>
+        </select>
       </div>
 
       <div>
@@ -56,11 +73,19 @@
       </div>
 
       <div>
-        <label for="house_id_box">
-          House
+        <label for="contact_id_box">
+          Contact
         </label>
-
-        <input type="text" id="house_id_box" name="query_house_id">
+        
+        <select type="text" id="contact_id_box" name="query_contact_id">
+        <% @current_user.contacts.each do |a_contact|%>
+          <% if a_contact.contact_name != nil %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+          <% else %>
+            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+          <% end %>
+        <% end %>
+        </select>
       </div>
 
       <button>
@@ -75,9 +100,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Description
@@ -85,6 +107,10 @@
 
         <th>
           Status
+        </th>
+
+        <th>
+          Contact
         </th>
 
         <th>
@@ -104,22 +130,11 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
         </th>
       </tr>
 
       <% @list_of_projects.each do |a_project| %>
       <tr>
-        <td>
-          <%= a_project.id %>
-        </td>
 
         <td>
           <%= a_project.description %>
@@ -128,6 +143,25 @@
         <td>
           <%= a_project.status %>
         </td>
+
+        <% if a_project.contact_id != nil %>
+          <% if a_project.contact.contact_name != nil %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <%= a_project.contact.contact_name %>
+              </a>
+            </td>
+          <% else %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <%= a_project.contact.company_name %>
+              </a>
+            </td>
+          <% end %>
+        <% else %>
+          <td>
+          </td>
+        <% end %>
 
         <td>
           <%= a_project.date_started %>
@@ -142,14 +176,7 @@
         </td>
 
         <td>
-          <%= a_project.house_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_project.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_project.updated_at) %> ago
+          <%= a_project.house.street_address %>
         </td>
 
         <td>

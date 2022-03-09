@@ -1,1 +1,120 @@
-hello
+<h1> 
+  <%= @current_user.first_name + "'s House - " + 
+  @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
+</h1>
+
+<div>
+  <%= @current_temp %>
+</div>
+
+<table border="1">
+      <tr>
+        <th>
+          Category
+        </th>
+
+        <th>
+          Appliance type
+        </th>
+
+        <th>
+          Make
+        </th>
+
+        <th>
+          Model
+        </th>
+
+        <th>
+          Year
+        </th>
+
+        <th>
+          Last serviced
+        </th>
+
+        <th>
+          Service due
+        </th>
+
+        <th>
+          Contact
+        </th>
+
+        <th>
+          Notes
+        </th>
+
+        <th>
+          House
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_appliances.each do |an_appliance| %>
+      <tr>
+        <td>
+          <%= an_appliance.category %>
+        </td>
+
+        <td>
+          <%= an_appliance.appliance_type %>
+        </td>
+
+        <td>
+          <%= an_appliance.make %>
+        </td>
+
+        <td>
+          <%= an_appliance.model %>
+        </td>
+
+        <td>
+          <%= an_appliance.year %>
+        </td>
+
+        <td>
+          <%= an_appliance.last_serviced %>
+        </td>
+
+        <td>
+          <%= an_appliance.service_due %>
+        </td>
+
+        <% if an_appliance.contact_id != nil %>
+          <% if an_appliance.contact.contact_name != nil %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+                <%= an_appliance.contact.contact_name %>
+              </a>
+            </td>
+          <% else %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+                <%= an_appliance.contact.company_name %>
+              </a>
+            </td>
+          <% end %>
+        <% else %>
+          <td>
+          </td>
+        <% end %>
+
+        <td>
+          <%= an_appliance.notes %>
+        </td>
+
+        <td>
+          <%= an_appliance.house.street_address %>
+        </td>
+
+        <td>
+          <a class="btn btn-primary" href="/appliances/<%= an_appliance.id %>" role="button">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>

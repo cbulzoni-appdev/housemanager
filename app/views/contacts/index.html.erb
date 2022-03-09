@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all contacts
+      My Rolodex
     </h1>
   </div>
 </div>
@@ -68,10 +68,6 @@
     <table border="1">
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           Company name
         </th>
 
@@ -97,10 +93,6 @@
 
       <% @list_of_contacts.each do |a_contact| %>
       <tr>
-        <td>
-          <%= a_contact.id %>
-        </td>
-
         <td>
           <%= a_contact.company_name %>
         </td>

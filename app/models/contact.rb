@@ -15,4 +15,6 @@
 class Contact < ApplicationRecord
 
   belongs_to(:owner, { :required => true, :class_name => "User", :foreign_key => "owner_id" })
+  has_many(:appliances, { :class_name => "Appliance", :foreign_key => "contact_id", :dependent => :nullify })
+  has_many(:projects, { :class_name => "Project", :foreign_key => "contact_id", :dependent => :nullify })
 end

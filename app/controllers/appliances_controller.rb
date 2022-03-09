@@ -38,6 +38,7 @@ class AppliancesController < ApplicationController
     #the_appliance.service_due = params.fetch("query_service_due")
     the_appliance.notes = params.fetch("query_notes")
     the_appliance.house_id = params.fetch("query_house_id")
+    the_appliance.contact_id = params.fetch("query_contact_id")
 
     if the_appliance.valid?
       the_appliance.save
@@ -70,6 +71,7 @@ class AppliancesController < ApplicationController
     #the_appliance.service_due = params.fetch("query_service_due")
     the_appliance.notes = params.fetch("query_notes")
     the_appliance.house_id = params.fetch("query_house_id")
+    the_appliance.contact_id = params.fetch("query_contact_id")
 
     if the_appliance.valid?
       the_appliance.save

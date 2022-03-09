@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get("/", { :controller => "houses", :action => "index" })
+  get("/", { :controller => "dashboard", :action => "index" })
 
   # Routes for the Maintenance event resource:
 
