@@ -1,13 +1,21 @@
-<h1> 
-  <%= @current_user.first_name + "'s House - " + 
-  @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
-</h1>
+<div class="container-fluid">
+  <h1> 
+    <%= @current_user.first_name + "'s House - " +
+          @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
+  </h1>
 
-<div>
-  <%= @current_temp %>
-</div>
+  <div>
+    <img src="<%= @street_view_image %>">
+  </div>
 
-<table border="1">
+  <p>
+    REMINDER: It is <%= @current_temp %>°F - your humidity should be set to <%= @humidity_level %>
+  </p>
+
+  <h2>Appliances </h2>
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
       <tr>
         <th>
           Category
@@ -52,7 +60,9 @@
         <th>
         </th>
       </tr>
+    </thead>
 
+    <tbody>
       <% @list_of_appliances.each do |an_appliance| %>
       <tr>
         <td>
@@ -117,4 +127,103 @@
         </td>
       </tr>
       <% end %>
-    </table>
+    </tbody>
+  </table>
+
+  <h2>Projects</h2>
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Contact
+        </th>
+
+        <th>
+          Date started
+        </th>
+
+        <th>
+          Date completed
+        </th>
+
+        <th>
+          Notes
+        </th>
+
+        <th>
+          House
+        </th>
+
+        <th>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @list_of_projects.each do |a_project| %>
+      <tr>
+
+        <td>
+          <%= a_project.description %>
+        </td>
+
+        <td>
+          <%= a_project.status %>
+        </td>
+
+        <% if a_project.contact_id != nil %>
+          <% if a_project.contact.contact_name != nil %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <%= a_project.contact.contact_name %>
+              </a>
+            </td>
+          <% else %>
+            <td>
+              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <%= a_project.contact.company_name %>
+              </a>
+            </td>
+          <% end %>
+        <% else %>
+          <td>
+          </td>
+        <% end %>
+
+        <td>
+          <%= a_project.date_started %>
+        </td>
+
+        <td>
+          <%= a_project.date_completed %>
+        </td>
+
+        <td>
+          <%= a_project.notes %>
+        </td>
+
+        <td>
+          <%= a_project.house.street_address %>
+        </td>
+
+        <td>
+          <a href="/projects/<%= a_project.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>

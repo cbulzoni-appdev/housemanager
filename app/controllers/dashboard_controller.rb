@@ -5,6 +5,9 @@ class DashboardController < ApplicationController
 
     matching_appliances = @primary_residence.appliances.all
     @list_of_appliances = matching_appliances.order({ :created_at => :desc }) 
+
+    matching_projects = @primary_residence.projects.all
+    @list_of_projects = matching_projects.order({ :created_at => :desc })
     
     primary_house_address = @primary_residence.street_address + @primary_residence.city + @primary_residence.state
     gmaps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{primary_house_address}&key=#{ENV.fetch("GMAPS_KEY")}"
@@ -16,6 +19,20 @@ class DashboardController < ApplicationController
     dsky_url = "https://api.darksky.net/forecast/#{ENV.fetch("DARK_SKY_KEY")}/#{lat},#{lon}"
     dsky_data = open(dsky_url).read
     @current_temp = JSON.parse(dsky_data).fetch("currently").fetch("temperature")
+
+    if @current_temp < -20
+      @humidity_level = "15%-20%"
+    elsif @current_temp.between?(-20,0)
+      @humidity_level = "20%-30%"
+    elsif @current_temp.between?(0,25)
+      @humidity_level = "30%-40%"
+    elsif @current_temp.between?(25,50)
+      @humidity_level = "Max. 40%"
+    elsif @current_temp > 50
+      @humidity_level = "Max. 45%"
+    end
+
+    @street_view_image = "https://maps.googleapis.com/maps/api/streetview?size=300x300&location=#{lat},#{lon}&fov=55&heading=180&pitch=0&key=#{ENV.fetch("CB_GMAPS_KEY")}"
 
     render({ :template => "homepage/user_dashboard.html.erb"})
   end
