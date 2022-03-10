@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
       @primary_residence = @current_user.houses.where({ :primary_residence => "Yes" }).at(0)
 
       matching_appliances = @primary_residence.appliances.all
-      @list_of_appliances = matching_appliances.order({ :created_at => :desc }) 
+      @list_of_appliances = matching_appliances.order({ :category => :desc }) 
 
       matching_projects = @primary_residence.projects.all
       @list_of_projects = matching_projects.order({ :created_at => :desc })

@@ -1,275 +1,35 @@
-<div class="container-fluid">
-  <h1> 
-    <%= @current_user.first_name + "'s House - " +
-          @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
-  </h1>
+<div class="container">
 
-  <div>
-    <img src="<%= @street_view_image %>">
+  <div class="row mb-5">
+    <div class="card mb-6" style="max-width: 2000px;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="<%= @street_view_image %>" class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= @current_user.first_name + "'s House - "%></h5>
+              <p class="card-text">
+               <%= @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
+              </p>
+            <p class="card-text"><small class="text-muted">REMINDER: It is <%= @current_temp %>°F - your humidity should be set to <%= @humidity_level %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <p>
-    REMINDER: It is <%= @current_temp %>°F - your humidity should be set to <%= @humidity_level %>
-  </p>
-
-  <h2>Appliances </h2>
-
-  <table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th>
-          Category
-        </th>
-
-        <th>
-          Appliance type
-        </th>
-
-        <th>
-          Make
-        </th>
-
-        <th>
-          Model
-        </th>
-
-        <th>
-          Year
-        </th>
-
-        <th>
-          Last serviced
-        </th>
-
-        <th>
-          Service due
-        </th>
-
-        <th>
-          Contact
-        </th>
-
-        <th>
-          Notes
-        </th>
-
-        <th>
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @list_of_appliances.each do |an_appliance| %>
-      <tr>
-        <td>
-          <%= an_appliance.category %>
-        </td>
-
-        <td>
-          <%= an_appliance.appliance_type %>
-        </td>
-
-        <td>
-          <%= an_appliance.make %>
-        </td>
-
-        <td>
-          <%= an_appliance.model %>
-        </td>
-
-        <td>
-          <%= an_appliance.year %>
-        </td>
-
-        <td>
-          <%= an_appliance.last_serviced %>
-        </td>
-
-        <td>
-          <%= an_appliance.service_due %>
-        </td>
-
-        <% if an_appliance.contact_id != nil %>
-          <% if an_appliance.contact.contact_name != nil %>
-            <td>
-              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
-                <%= an_appliance.contact.contact_name %>
-              </a>
-            </td>
-          <% else %>
-            <td>
-              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
-                <%= an_appliance.contact.company_name %>
-              </a>
-            </td>
-          <% end %>
-        <% else %>
-          <td>
-          </td>
-        <% end %>
-
-        <td>
-          <%= an_appliance.notes %>
-        </td>
-
-        <td>
-          <a class="btn btn-primary" href="/appliances/<%= an_appliance.id %>" role="button">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h2>Projects</h2>
-
-  <table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Status
-        </th>
-
-        <th>
-          Contact
-        </th>
-
-        <th>
-          Date started
-        </th>
-
-        <th>
-          Date completed
-        </th>
-
-        <th>
-          Notes
-        </th>
-
-        <th>
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @list_of_projects.each do |a_project| %>
-      <tr>
-
-        <td>
-          <%= a_project.description %>
-        </td>
-
-        <td>
-          <%= a_project.status %>
-        </td>
-
-        <% if a_project.contact_id != nil %>
-          <% if a_project.contact.contact_name != nil %>
-            <td>
-              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
-                <%= a_project.contact.contact_name %>
-              </a>
-            </td>
-          <% else %>
-            <td>
-              <a class="btn btn-primary" href="/contacts/<%= a_project.contact.id %>" role="button">
-                <%= a_project.contact.company_name %>
-              </a>
-            </td>
-          <% end %>
-        <% else %>
-          <td>
-          </td>
-        <% end %>
-
-        <td>
-          <%= a_project.date_started %>
-        </td>
-
-        <td>
-          <%= a_project.date_completed %>
-        </td>
-
-        <td>
-          <%= a_project.notes %>
-        </td>
-
-        <td>
-          <a href="/projects/<%= a_project.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <h2>Rolodex</h2>
-  <table class="table table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th>
-          Company name
-        </th>
-
-        <th>
-          Contact name
-        </th>
-
-        <th>
-          Contact type
-        </th>
-
-        <th>
-          Email
-        </th>
-
-        <th>
-          Phone number
-        </th>
-
-        <th>
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @list_of_contacts.each do |a_contact| %>
-      <tr>
-        <td>
-          <%= a_contact.company_name %>
-        </td>
-
-        <td>
-          <%= a_contact.contact_name %>
-        </td>
-
-        <td>
-          <%= a_contact.contact_type %>
-        </td>
-
-        <td>
-          <%= a_contact.email %>
-        </td>
-
-        <td>
-          <%= a_contact.phone_number %>
-        </td>
-
-        <td>
-          <a href="/contacts/<%= a_contact.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class ="row mb-3">
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <img src="https://4bbdwp2p.media.zestyio.com/kitchen-appliances-image.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">My Appliances</h5>
+          <p class="card-text">Check out your appliances and/or add a new one.</p>
+          <a href="#" class="btn btn-primary">Go to appliances</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
