@@ -54,10 +54,6 @@
         </th>
 
         <th>
-          House
-        </th>
-
-        <th>
         </th>
       </tr>
     </thead>
@@ -117,10 +113,6 @@
         </td>
 
         <td>
-          <%= an_appliance.house.street_address %>
-        </td>
-
-        <td>
           <a class="btn btn-primary" href="/appliances/<%= an_appliance.id %>" role="button">
             Show details
           </a>
@@ -158,10 +150,6 @@
 
         <th>
           Notes
-        </th>
-
-        <th>
-          House
         </th>
 
         <th>
@@ -213,11 +201,69 @@
         </td>
 
         <td>
-          <%= a_project.house.street_address %>
+          <a href="/projects/<%= a_project.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h2>Rolodex</h2>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          Company name
+        </th>
+
+        <th>
+          Contact name
+        </th>
+
+        <th>
+          Contact type
+        </th>
+
+        <th>
+          Email
+        </th>
+
+        <th>
+          Phone number
+        </th>
+
+        <th>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @list_of_contacts.each do |a_contact| %>
+      <tr>
+        <td>
+          <%= a_contact.company_name %>
         </td>
 
         <td>
-          <a href="/projects/<%= a_project.id %>">
+          <%= a_contact.contact_name %>
+        </td>
+
+        <td>
+          <%= a_contact.contact_type %>
+        </td>
+
+        <td>
+          <%= a_contact.email %>
+        </td>
+
+        <td>
+          <%= a_contact.phone_number %>
+        </td>
+
+        <td>
+          <a href="/contacts/<%= a_contact.id %>">
             Show details
           </a>
         </td>

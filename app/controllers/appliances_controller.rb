@@ -1,6 +1,6 @@
 class AppliancesController < ApplicationController
   def index
-    matching_appliances = Appliance.all
+    matching_appliances = @current_user.appliances.all
 
     @list_of_appliances = matching_appliances.order({ :created_at => :desc })
 
@@ -35,7 +35,11 @@ class AppliancesController < ApplicationController
     the_appliance.model = params.fetch("query_model")
     the_appliance.year = params.fetch("query_year")
     the_appliance.last_serviced = params.fetch("query_last_serviced")
-    #the_appliance.service_due = params.fetch("query_service_due")
+    
+    if the_appliance.appliance_type.in?(['Furnace','Water Heater'])
+      the_appliance.service_due = the_appliance.last_serviced + 365
+    end
+
     the_appliance.notes = params.fetch("query_notes")
     the_appliance.house_id = params.fetch("query_house_id")
     the_appliance.contact_id = params.fetch("query_contact_id")
@@ -68,7 +72,11 @@ class AppliancesController < ApplicationController
     the_appliance.model = params.fetch("query_model")
     the_appliance.year = params.fetch("query_year")
     the_appliance.last_serviced = params.fetch("query_last_serviced")
-    #the_appliance.service_due = params.fetch("query_service_due")
+    
+    if the_appliance.appliance_type.in?(['Furnace','Water Heater'])
+      the_appliance.service_due = the_appliance.last_serviced + 365
+    end
+
     the_appliance.notes = params.fetch("query_notes")
     the_appliance.house_id = params.fetch("query_house_id")
     the_appliance.contact_id = params.fetch("query_contact_id")

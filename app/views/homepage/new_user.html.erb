@@ -1,1 +1,64 @@
-hello
+<h1>Welcome, <%= @current_user.first_name %>!</h1>
+
+<div>
+  <h2>
+    Tell us about your house...
+  </h2>
+
+  <form action="/insert_house" method="post">
+    <div>
+      <label for="street_address_box">
+        Street address
+      </label>
+
+      <input type="text" id="street_address_box" name="query_street_address">
+    </div>
+
+    <div>
+      <label for="city_box">
+        City
+      </label>
+
+      <input type="text" id="city_box" name="query_city">
+    </div>
+
+    <div>
+      <label for="state_box">
+        State
+      </label>
+
+      <input type="text" id="state_box" name="query_state">
+    </div>
+
+    <div>
+      <label for="zip_code_box">
+        Zip code
+      </label>
+
+      <input type="text" id="zip_code_box" name="query_zip_code">
+    </div>
+
+    <div>
+      <label for="purchase_date_box">
+        Purchase date
+      </label>
+
+      <input type="date" id="purchase_date_box" name="query_purchase_date">
+    </div>
+
+    <div>
+      <label for="primary_residence_box">
+        Primary residence
+      </label>
+
+      <select type="text" id="primary_residence_box" name="query_primary_residence">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+    </div>
+
+    <button>
+      Create house
+    </button>
+  </form>
+</div>

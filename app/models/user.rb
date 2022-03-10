@@ -20,5 +20,4 @@ class User < ApplicationRecord
   has_many(:contacts, { :class_name => "Contact", :foreign_key => "owner_id", :dependent => :destroy })
   has_many(:appliances, { :through => :houses, :source => :appliances })
   has_many(:projects, { :through => :houses, :source => :projects })
-  has_many(:maintenance_events, { :through => :houses, :source => :maintenance_events })
 end

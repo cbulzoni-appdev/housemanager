@@ -2,25 +2,6 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "dashboard", :action => "index" })
 
-  # Routes for the Maintenance event resource:
-
-  # CREATE
-  post("/insert_maintenance_event", { :controller => "maintenance_events", :action => "create" })
-          
-  # READ
-  get("/maintenance_events", { :controller => "maintenance_events", :action => "index" })
-  
-  get("/maintenance_events/:path_id", { :controller => "maintenance_events", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_maintenance_event/:path_id", { :controller => "maintenance_events", :action => "update" })
-  
-  # DELETE
-  get("/delete_maintenance_event/:path_id", { :controller => "maintenance_events", :action => "destroy" })
-
-  #------------------------------
-
   # Routes for the Contact resource:
 
   # CREATE

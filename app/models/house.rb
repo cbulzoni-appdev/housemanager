@@ -17,7 +17,6 @@ class House < ApplicationRecord
 
   has_many(:projects, { :class_name => "Project", :foreign_key => "house_id", :dependent => :destroy })
   has_many(:appliances, { :class_name => "Appliance", :foreign_key => "house_id", :dependent => :destroy })
-  has_many(:maintenance_events, { :class_name => "MaintenanceEvent", :foreign_key => "house_id", :dependent => :destroy })
   belongs_to(:owner, { :required => true, :class_name => "User", :foreign_key => "owner_id" })
   
 end

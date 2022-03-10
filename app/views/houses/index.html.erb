@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all houses
+      <%= @current_user.first_name %>'s Houses
     </h1>
   </div>
 </div>
@@ -78,9 +78,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Street address
@@ -112,10 +109,6 @@
 
       <% @list_of_houses.each do |a_house| %>
       <tr>
-        <td>
-          <%= a_house.id %>
-        </td>
-
         <td>
           <%= a_house.street_address %>
         </td>

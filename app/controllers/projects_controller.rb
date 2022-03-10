@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    matching_projects = Project.all
+    matching_projects = @current_user.projects.all
 
     @list_of_projects = matching_projects.order({ :created_at => :desc })
 

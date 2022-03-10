@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   def index
-    matching_contacts = Contact.all
+    matching_contacts = @current_user.contacts.all
 
     @list_of_contacts = matching_contacts.order({ :created_at => :desc })
 
