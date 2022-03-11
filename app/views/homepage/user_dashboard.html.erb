@@ -1,21 +1,20 @@
 <div class="container">
 
-  <div class="row mb-5">
-    <div class="card mb-6" style="max-width: 2000px;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="<%= @street_view_image %>" class="img-fluid rounded-start">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><%= @current_user.first_name + "'s House - "%></h5>
-              <p class="card-text">
-               <%= @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
-              </p>
-            <p class="card-text"><small class="text-muted">REMINDER: It is <%= @current_temp %>°F - your humidity should be set to <%= @humidity_level %></small></p>
-          </div>
-        </div>
-      </div>
+
+
+  <div class="row mb-5 mt-3 border">
+    <div class="col-md-4">
+      <img src="<%= @street_view_image %>" class="img-fluid rounded-start">
+    </div>
+    <div class="col-md-8">
+      <h1>
+        <p class="text-center">
+          <%= @current_user.first_name + "'s House" %>
+        </p>
+        <p class="text-center">
+          <%= @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
+        </p>
+      </h1>
     </div>
   </div>
 

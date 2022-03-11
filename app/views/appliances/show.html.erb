@@ -110,19 +110,24 @@
       </div>
 
       <div>
-        <label for="category_box">
-          Category
-        </label>
-
-        <input type="text" id="category_box" name="query_category" value="<%= @the_appliance.category %>">
-      </div>
-
-      <div>
         <label for="appliance_type_box">
           Appliance type
         </label>
 
-        <input type="text" id="appliance_type_box" name="query_appliance_type" value="<%= @the_appliance.appliance_type %>">
+        <select type="text" id="appliance_type_box" name="query_appliance_type">
+          <option value="Air Conditioner">Air Conditioner</option>
+          <option value="Water Heater">Water Heater</option>
+          <option value="Sump Pump">Sump Pump</option>
+          <option value="Furnace">Furnace</option>
+          <option value="Range">Range</option>
+          <option value="Oven">Oven</option>
+          <option value="Stove">Stove</option>
+          <option value="Microwave">Microwave</option>
+          <option value="Dishwasher">Dishwasher</option>
+          <option value="Washing Machine">Washing Machine</option>
+          <option value="Dryer">Dryer</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
 
       <div>
@@ -171,13 +176,14 @@
         </label>
         
         <select type="text" id="contact_id_box" name="query_contact_id">
-        <% @current_user.contacts.each do |a_contact|%>
-          <% if a_contact.contact_name != nil %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
-          <% else %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+          <option value=nil selected="selected">(None)</option>
+          <% @current_user.contacts.each do |a_contact|%>
+            <% if a_contact.contact_name != nil %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+            <% else %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+            <% end %>
           <% end %>
-        <% end %>
         </select>
       </div>
 

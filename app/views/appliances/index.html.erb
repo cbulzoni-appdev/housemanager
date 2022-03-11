@@ -95,13 +95,14 @@
         </label>
         
         <select type="text" id="contact_id_box" name="query_contact_id">
-        <% @current_user.contacts.each do |a_contact|%>
-          <% if a_contact.contact_name != nil %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
-          <% else %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+          <option value=nil selected="selected">(None)</option>
+          <% @current_user.contacts.each do |a_contact|%>
+            <% if a_contact.contact_name != nil %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+            <% else %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+            <% end %>
           <% end %>
-        <% end %>
         </select>
       </div>
 
@@ -191,16 +192,16 @@
           <%= an_appliance.service_due %>
         </td>
 
-        <% if an_appliance.contact_id != nil %>
+        <% if an_appliance.contact != nil %>
           <% if an_appliance.contact.contact_name != nil %>
             <td>
-              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+              <a class="btn btn-primary btn-sm" href="/contacts/<%= an_appliance.contact.id %>" role="button">
                 <%= an_appliance.contact.contact_name %>
               </a>
             </td>
           <% else %>
             <td>
-              <a class="btn btn-primary" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+              <a class="btn btn-primary btn-sm" href="/contacts/<%= an_appliance.contact.id %>" role="button">
                 <%= an_appliance.contact.company_name %>
               </a>
             </td>
@@ -219,7 +220,7 @@
         </td>
 
         <td>
-          <a class="btn btn-primary" href="/appliances/<%= an_appliance.id %>" role="button">
+          <a class="btn btn-primary btn-sm" href="/appliances/<%= an_appliance.id %>" role="button">
             Show details
           </a>
         </td>
