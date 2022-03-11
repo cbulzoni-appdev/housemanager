@@ -1,127 +1,126 @@
-<div>
-  <div>
-    <h1>
-      <%= @current_user.first_name %>'s Rolodex
-    </h1>
+<div class="container-fluid">
+
+  <div class="row mb-3">
+    
+    <div class="col-md-12">
+      <h2><%= @current_user.first_name %>'s Rolodex</h2>
+      <table border="1">
+        <tr>
+          <th>
+            Company name
+          </th>
+
+          <th>
+            Contact name
+          </th>
+
+          <th>
+            Contact type
+          </th>
+
+          <th>
+            Email
+          </th>
+
+          <th>
+            Phone number
+          </th>
+
+          <th>
+          </th>
+        </tr>
+
+        <% @list_of_contacts.each do |a_contact| %>
+        <tr>
+          <td>
+            <%= a_contact.company_name %>
+          </td>
+
+          <td>
+            <%= a_contact.contact_name %>
+          </td>
+
+          <td>
+            <%= a_contact.contact_type %>
+          </td>
+
+          <td>
+            <%= a_contact.email %>
+          </td>
+
+          <td>
+            <%= a_contact.phone_number %>
+          </td>
+
+          <td>
+            <a href="/contacts/<%= a_contact.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
 
-<hr>
+  <div class="row mb-3">
+    <di class="col-md-5">
+      <h2>
+        Add a new contact
+      </h2>
 
-<div>
-  <div>
-    <h2>
-      Add a new contact
-    </h2>
+      <form action="/insert_contact" method="post">
+        <div class="row mb-3">
+          <div class="col">
+            <label for="company_name_box" class="form-label">
+              Company name
+            </label>
 
-    <form action="/insert_contact" method="post">
-      <div>
-        <label for="company_name_box">
-          Company name
-        </label>
+            <input type="text" class="form-control" id="company_name_box" name="query_company_name">
+          </div>
 
-        <input type="text" id="company_name_box" name="query_company_name">
-      </div>
+          <div class="col">
+            <label for="contact_name_box" class="form-label">
+              Contact name
+            </label>
 
-      <div>
-        <label for="contact_name_box">
-          Contact name
-        </label>
+            <input type="text" class="form-control" id="contact_name_box" name="query_contact_name">
+          </div>
+        </div>
 
-        <input type="text" id="contact_name_box" name="query_contact_name">
-      </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="contact_type_box" class="form-label">
+              Contact type
+            </label>
 
-      <div>
-        <label for="contact_type_box">
-          Contact type
-        </label>
+            <input type="text" class="form-control" id="contact_type_box" name="query_contact_type">
+          </div>
+        </div>
 
-        <input type="text" id="contact_type_box" name="query_contact_type">
-      </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="email_box" class="form-label">
+              Email
+            </label>
 
-      <div>
-        <label for="email_box">
-          Email
-        </label>
+            <input type="text" class="form-control" id="email_box" name="query_email">
+          </div>
 
-        <input type="text" id="email_box" name="query_email">
-      </div>
+          <div class="col">
+            <label for="phone_number_box" class="form-label">
+              Phone number
+            </label>
 
-      <div>
-        <label for="phone_number_box">
-          Phone number
-        </label>
-
-        <input type="text" id="phone_number_box" name="query_phone_number">
-      </div>
-
-      <button>
-        Create contact
-      </button>
-    </form>
+            <input type="text" class="form-control" id="phone_number_box" name="query_phone_number">
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+          Create contact
+        </button>
+      </form>
+    </div>
   </div>
+
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          Company name
-        </th>
-
-        <th>
-          Contact name
-        </th>
-
-        <th>
-          Contact type
-        </th>
-
-        <th>
-          Email
-        </th>
-
-        <th>
-          Phone number
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_contacts.each do |a_contact| %>
-      <tr>
-        <td>
-          <%= a_contact.company_name %>
-        </td>
-
-        <td>
-          <%= a_contact.contact_name %>
-        </td>
-
-        <td>
-          <%= a_contact.contact_type %>
-        </td>
-
-        <td>
-          <%= a_contact.email %>
-        </td>
-
-        <td>
-          <%= a_contact.phone_number %>
-        </td>
-
-        <td>
-          <a href="/contacts/<%= a_contact.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
