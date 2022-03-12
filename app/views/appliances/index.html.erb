@@ -83,13 +83,13 @@
             <% if an_appliance.contact != nil %>
               <% if an_appliance.contact.contact_name != nil %>
                 <td>
-                  <a class="btn btn-primary btn-sm" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+                  <a href="/contacts/<%= an_appliance.contact.id %>">
                     <%= an_appliance.contact.contact_name %>
                   </a>
                 </td>
               <% else %>
                 <td>
-                  <a class="btn btn-primary btn-sm" href="/contacts/<%= an_appliance.contact.id %>" role="button">
+                  <a href="/contacts/<%= an_appliance.contact.id %>">
                     <%= an_appliance.contact.company_name %>
                   </a>
                 </td>
@@ -108,7 +108,7 @@
             </td>
 
             <td>
-              <a class="btn btn-primary btn-sm" href="/appliances/<%= an_appliance.id %>" role="button">
+              <a href="/appliances/<%= an_appliance.id %>">
                 Show details
               </a>
             </td>

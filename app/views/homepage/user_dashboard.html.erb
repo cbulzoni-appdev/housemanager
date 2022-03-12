@@ -15,6 +15,11 @@
           <%= @primary_residence.street_address + ", " + @primary_residence.city + ", " + @primary_residence.state + " " + @primary_residence.zip_code %>
         </p>
       </h1>
+
+      <h5 class="text-center">It's currently <%= @current_temp %>. Humidity should be set to <%= @humidity_level %>.</h5>
+      <form action="/send_text" method="post">
+        <button type="submit" name="humidity_text" value="humidity_text" class="btn-link">Send Text</button>
+      </form>
     </div>
   </div>
 

@@ -1,147 +1,144 @@
-<div>
-  <div>
-    <h1>
-      <i class="fa-solid fa-house"></i> <%= @current_user.first_name %>'s Houses
-    </h1>
+<div class="container-fluid">
+
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h2><%= @current_user.first_name %>'s Houses</h2>
+      <table border="1">
+        <tr>
+
+          <th>
+            Street address
+          </th>
+
+          <th>
+            City
+          </th>
+
+          <th>
+            State
+          </th>
+
+          <th>
+            Zip code
+          </th>
+
+          <th>
+            Purchase date
+          </th>
+
+          <th>
+            Primary residence
+          </th>
+
+          <th>
+          </th>
+        </tr>
+
+        <% @list_of_houses.each do |a_house| %>
+        <tr>
+          <td>
+            <%= a_house.street_address %>
+          </td>
+
+          <td>
+            <%= a_house.city %>
+          </td>
+
+          <td>
+            <%= a_house.state %>
+          </td>
+
+          <td>
+            <%= a_house.zip_code %>
+          </td>
+
+          <td>
+            <%= a_house.purchase_date %>
+          </td>
+
+          <td>
+            <%= a_house.primary_residence %>
+          </td>
+
+          <td>
+            <a href="/houses/<%= a_house.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
 
-<hr>
+  <div class="row mb-3">
+    <div class="col-md-5">
+      <h2>
+        Add a new house
+      </h2>
 
-<div>
-  <div>
-    <h2>
-      Add a new house
-    </h2>
+      <form action="/insert_house" method="post">
+        <div class="mb-3">
+          <label for="street_address_box" class="form-label">
+            Street address
+          </label>
 
-    <form action="/insert_house" method="post">
-      <div>
-        <label for="street_address_box">
-          Street address
-        </label>
+          <input type="text" class="form-control" id="street_address_box" name="query_street_address">
+        </div>
 
-        <input type="text" id="street_address_box" name="query_street_address">
-      </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="city_box" class="form-label">
+              City
+            </label>
 
-      <div>
-        <label for="city_box">
-          City
-        </label>
+            <input type="text" class="form-control" id="city_box" name="query_city">
+          </div>
 
-        <input type="text" id="city_box" name="query_city">
-      </div>
+          <div class="col-md-2">
+            <label for="state_box" class="form-label">
+              State
+            </label>
 
-      <div>
-        <label for="state_box">
-          State
-        </label>
+            <input type="text" class="form-control" id="state_box" name="query_state">
+          </div>
 
-        <input type="text" id="state_box" name="query_state">
-      </div>
+          <div class="col-md-4">
+            <label for="zip_code_box" class="form-label">
+              Zip code
+            </label>
 
-      <div>
-        <label for="zip_code_box">
-          Zip code
-        </label>
+            <input type="text" class="form-control" id="zip_code_box" name="query_zip_code">
+          </div>
+        </div>
 
-        <input type="text" id="zip_code_box" name="query_zip_code">
-      </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="purchase_date_box" class="form-label">
+              Purchase date
+            </label>
 
-      <div>
-        <label for="purchase_date_box">
-          Purchase date
-        </label>
+            <input type="date" class="form-control" id="purchase_date_box" name="query_purchase_date">
+          </div>
 
-        <input type="date" id="purchase_date_box" name="query_purchase_date">
-      </div>
+          <div class="col">
+            <label for="primary_residence_box" class="form-label">
+              Primary residence
+            </label>
 
-      <div>
-        <label for="primary_residence_box">
-          Primary residence
-        </label>
+            <select type="text" class="form-control" id="primary_residence_box" name="query_primary_residence">
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+        </div>
 
-        <select type="text" id="primary_residence_box" name="query_primary_residence">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-      </div>
-
-      <button>
-        Create house
-      </button>
-    </form>
+        <button type="submit" class="btn btn-primary">
+          Create house
+        </button>
+      </form>
+    </div>
   </div>
+
+  
 </div>
-
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-
-        <th>
-          Street address
-        </th>
-
-        <th>
-          City
-        </th>
-
-        <th>
-          State
-        </th>
-
-        <th>
-          Zip code
-        </th>
-
-        <th>
-          Purchase date
-        </th>
-
-        <th>
-          Primary residence
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_houses.each do |a_house| %>
-      <tr>
-        <td>
-          <%= a_house.street_address %>
-        </td>
-
-        <td>
-          <%= a_house.city %>
-        </td>
-
-        <td>
-          <%= a_house.state %>
-        </td>
-
-        <td>
-          <%= a_house.zip_code %>
-        </td>
-
-        <td>
-          <%= a_house.purchase_date %>
-        </td>
-
-        <td>
-          <%= a_house.primary_residence %>
-        </td>
-
-        <td>
-          <a href="/houses/<%= a_house.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

@@ -52,13 +52,13 @@
           <% if a_project.contact_id != nil %>
             <% if a_project.contact.contact_name != nil %>
               <td>
-                <a class="btn btn-primary btn-sm" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <a href="/contacts/<%= a_project.contact.id %>">
                   <%= a_project.contact.contact_name %>
                 </a>
               </td>
             <% else %>
               <td>
-                <a class="btn btn-primary btn-sm" href="/contacts/<%= a_project.contact.id %>" role="button">
+                <a href="/contacts/<%= a_project.contact.id %>">
                   <%= a_project.contact.company_name %>
                 </a>
               </td>

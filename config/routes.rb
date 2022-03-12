@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "dashboard", :action => "index" })
 
+  post("/send_text", { :controller => "dashboard", :action => "humidity_text" })
+
   # Routes for the Contact resource:
 
   # CREATE
@@ -18,6 +20,9 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_contact/:path_id", { :controller => "contacts", :action => "destroy" })
+
+  #SEND TEXT
+  post("send_contact_text/:path_id", { :controller => "contacts", :action => "send_text" })
 
   #------------------------------
 

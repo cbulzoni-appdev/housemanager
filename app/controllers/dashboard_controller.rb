@@ -43,4 +43,27 @@ class DashboardController < ApplicationController
       render({ :template => "homepage/user_dashboard.html.erb"})
     end
   end
+
+  def humidity_text 
+    twilio_sid = ENV.fetch("TWILIO_ACCOUNT_SID")
+    twilio_token = ENV.fetch("TWILIO_AUTH_TOKEN")
+    twilio_sending_number = ENV.fetch("TWILIO_SENDING_PHONE_NUMBER")
+
+    twilio_client = Twilio::REST::Client.new(twilio_sid, twilio_token)
+
+    message = twilio_client.messages.
+      create(
+        :from => twilio_sending_number,
+        :to => "+18473452223", # Put your own phone number here if you want to see it in action
+        :body => "It's going to rain today — take an umbrella!",
+        :send_at => Time.new(2022, 03, 12, 15, 54, 30),
+        :schedule_type => "fixed"
+      )
+    
+    puts message.sid
+
+    #twilio_client.api.account.messages.create(sms_parameters)
+
+    redirect_to("/")
+  end
 end
