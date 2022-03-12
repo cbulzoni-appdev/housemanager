@@ -1,7 +1,5 @@
 <div class="container">
 
-
-
   <div class="row mb-5 mt-3 border">
     <div class="col-md-4">
       <img src="<%= @street_view_image %>" class="img-fluid rounded-start">
@@ -16,22 +14,36 @@
         </p>
       </h1>
 
-      <h5 class="text-center">It's currently <%= @current_temp %>. Humidity should be set to <%= @humidity_level %>.</h5>
-      <form action="/send_text" method="post">
-        <button type="submit" name="humidity_text" value="humidity_text" class="btn-link">Send Text</button>
-      </form>
+      <h5 class="text-center">It's currently <%= @current_temp.round(0) %>°F. Humidity should be set to <%= @humidity_level %>.</h5>
     </div>
   </div>
 
-  <div class ="row mb-3">
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://4bbdwp2p.media.zestyio.com/kitchen-appliances-image.jpg" class="card-img-top">
-        <div class="card-body">
-          <h5 class="card-title">My Appliances</h5>
-          <p class="card-text">Check out your appliances and/or add a new one.</p>
-          <a href="#" class="btn btn-primary">Go to appliances</a>
-        </div>
+  <h2>Your To-Do List</h2>
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <div class="list-group">
+        <% @list_of_appliances.each do |an_appliance| %>
+          <% if an_appliance.service_due != nil %>
+            <% if (an_appliance.service_due - Date.today).to_i < 60 %>
+              <a href="/contacts/<%= an_appliance.contact_id %>" class="list-group-item list-group-item-action">
+                Your <%= an_appliance.appliance_type %> is due for maintenance in <%= (an_appliance.service_due - Date.today).to_i %> days.
+                Call <%= an_appliance.contact.contact_name %> for service.
+              </a>
+            <% end %>
+          <% end %>
+        <% end %>
+        
+        <% @list_of_projects.where({ :status => "In Progress" }).each do |a_project| %>
+          <a href="projects/<%= a_project.id %>" class="list-group-item list-group-item-action">
+            Your project "<%= a_project.description %>" is still in progress.
+          </a>
+        <% end %>
+
+        <% @list_of_projects.where({ :status => "Not Yet Started" }).each do |a_project| %>
+          <a href="projects/<%= a_project.id %>" class="list-group-item list-group-item-action">
+            You haven't started your project "<%= a_project.description %>"
+          </a>
+        <% end %>
       </div>
     </div>
   </div>

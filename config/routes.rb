@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   get("/", { :controller => "dashboard", :action => "index" })
 
-  post("/send_text", { :controller => "dashboard", :action => "humidity_text" })
-
   # Routes for the Contact resource:
 
   # CREATE

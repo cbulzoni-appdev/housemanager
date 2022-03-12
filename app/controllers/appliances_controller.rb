@@ -36,7 +36,7 @@ class AppliancesController < ApplicationController
     the_appliance.year = params.fetch("query_year")
     the_appliance.last_serviced = params.fetch("query_last_serviced")
     
-    if the_appliance.appliance_type.in?(['Furnace','Water Heater'])
+    if the_appliance.appliance_type.in?(['Furnace','Water Heater','Air Conditioner'])
       the_appliance.service_due = the_appliance.last_serviced + 365
     end
 
@@ -73,7 +73,7 @@ class AppliancesController < ApplicationController
     the_appliance.year = params.fetch("query_year")
     the_appliance.last_serviced = params.fetch("query_last_serviced")
     
-    if the_appliance.appliance_type.in?(['Furnace','Water Heater'])
+    if the_appliance.appliance_type.in?(['Furnace','Water Heater','Air Conditioner'])
       the_appliance.service_due = the_appliance.last_serviced + 365
     end
 
