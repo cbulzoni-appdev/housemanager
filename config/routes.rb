@@ -21,8 +21,11 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_contact/:path_id", { :controller => "contacts", :action => "destroy" })
 
-  #SEND TEXT
+  # SEND TEXT
   post("send_contact_text/:path_id", { :controller => "contacts", :action => "send_text" })
+
+  # SEND EMAIL
+  post("send_contact_email/:path_id", { :controller => "contacts", :action => "send_email" })
 
   #------------------------------
 

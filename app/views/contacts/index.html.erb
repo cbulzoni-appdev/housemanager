@@ -61,12 +61,26 @@
           </td>
           
           <td>
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ModalTextForm">Send them a text</button>
+
+            <div class="dropdown">
+              <% if a_contact.contact_name != nil %>
+                <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.contact_name %> <span class="caret"></span></button>
+              <% else %>
+                <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.contact_name %> <span class="caret"></span></button>
+              <% end %>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <% if a_contact.phone_number != nil %>
+                  <li><a href="#" data-toggle="modal" data-target="#ModalTextForm">Text message</a></li>
+                <% end %>
+                <% if a_contact.email != nil %>
+                  <li><a href="#" data-toggle="modal" data-target="#ModalEmailForm">Email</a></li>
+                <% end %>
+              </ul>
+            </div>
 
             <!-- Modal -->
             <div id="ModalTextForm" class="modal fade">
               <div class="modal-dialog" role="document">
-
                 <!-- Modal content-->
                 <div class="modal-content">
                   <div class="modal-header">
@@ -90,9 +104,44 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
-
               </div>
             </div>
+
+            <!-- Modal -->
+            <div id="ModalEmailForm" class="modal fade">
+              <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Send an email</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form role="form" method="POST" action="/send_contact_email/<%= a_contact.id %>">
+                      <label for="subject_box" class="form-label">
+                        Subject Line
+                      </label>
+
+                      <textarea class="form-control" id="subject_box" name="query_subject" rows="1"></textarea>
+
+                      <label for="message_box" class="form-label">
+                        Message
+                      </label>
+
+                      <textarea class="form-control" id="message_box" name="query_message" rows="3"></textarea>
+
+                      <button type="submit" class="btn btn-primary">
+                        Send Email
+                      </button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </td>
         </tr>
         <% end %>
