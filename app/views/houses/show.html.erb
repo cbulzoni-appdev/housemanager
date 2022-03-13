@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="row mb-3">
+  <div class="row mb-1">
     <div class="col-md-3">
       <img src="<%= @street_view_image %>" class="img-fluid rounded-start">
     </div>
@@ -81,12 +81,19 @@
             <option value="No">No</option>
           </select>
         </div>
-
+        
         <button class="btn btn-primary mt-3">
           Update house
         </button>
       </form>
+    </div>
+  </div>
 
+  <div class="row mb-3">
+    <div class="col-md-3 offset-md-3">
+      <a class="btn btn-danger mt-3" href="/delete_house/<%= @the_house.id %>">
+            Delete house
+      </a>
     </div>
   </div>
 

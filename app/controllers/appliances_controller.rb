@@ -14,6 +14,28 @@ class AppliancesController < ApplicationController
 
     @the_appliance = matching_appliances.at(0)
 
+    if @the_appliance.appliance_type == "Furnace"
+      @appliance_image = 'https://www.servicechampions.net/wp-content/uploads/2015/03/new-furnace-installation-1.jpg'
+    elsif @the_appliance.appliance_type == "Sump Pump"
+      @appliance_image = "https://mastertechtexas.com/wp-content/uploads/2021/02/Sump-Pump.jpg"
+    elsif @the_appliance.appliance_type == "Dishwasher"
+      @appliance_image = "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6436/6436850_sd.jpg"
+    elsif @the_appliance.appliance_type == "Air Conditioner"
+      @appliance_image = "https://www.solaceheatingandair.com/site/wp-content/uploads/ac-installation.jpg"
+    elsif @the_appliance.appliance_type == "Water Heater"
+      @appliance_image = "https://cf-images.us-east-1.prod.boltdns.net/v1/static/66036796001/42d3482c-eac1-444b-9c22-c4557792db69/a0ea7463-aa04-4096-9df3-971632759924/960x540/match/image.jpg"
+    elsif @the_appliance.appliance_type == "Washing Machine"
+      @appliance_image = "https://www.lg.com/us/images/washers/md06098736/gallery/desktop-03.jpg"
+    elsif @the_appliance.appliance_type == "Dryer"
+      @appliance_image = "https://www.shopmyexchange.com/products/images/xlarge/1869477_3550.jpg"
+    elsif @the_appliance.appliance_type == "Range"
+      @appliance_image = "https://images.homedepot.ca/productimages/p_1001529634.jpg?wid=1000&hei=1000&op_sharpen=1&product-images=l"
+    elsif @the_appliance.appliance_type == "Oven"
+      @appliance_image = "https://cdn11.bigcommerce.com/s-dj46qhetxl/images/stencil/1280x1280/products/123765/271987/Dispatcher_RequestType_Image&Name_24051431__03318.1634382668.jpg?c=1"
+    elsif @the_appliance.appliance_type == "Microwave"
+      @appliance_image = "https://www.ikea.com/us/en/images/products/medelniva-over-the-range-microwave-stainless-steel__0852294_pe780009_s5.jpg?f=s"
+    end
+
     render({ :template => "appliances/show.html.erb" })
   end
 

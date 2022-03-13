@@ -1,197 +1,135 @@
-<div>
-  <div>
-    <h1>
-      <%= @the_appliance.appliance_type %> Details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/appliances">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_appliance/<%= @the_appliance.id %>">
-          Delete appliance
-        </a>
-      </div>
+<div class="container-fluid">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <h1>
+        <%= @the_appliance.appliance_type %>
+      </h1>
     </div>
 
-    <dl>
-      <dt>
-        Category
-      </dt>
-      <dd>
-        <%= @the_appliance.category %>
-      </dd>
-
-      <dt>
-        Appliance type
-      </dt>
-      <dd>
-        <%= @the_appliance.appliance_type %>
-      </dd>
-
-      <dt>
-        Make
-      </dt>
-      <dd>
-        <%= @the_appliance.make %>
-      </dd>
-
-      <dt>
-        Model
-      </dt>
-      <dd>
-        <%= @the_appliance.model %>
-      </dd>
-
-      <dt>
-        Year
-      </dt>
-      <dd>
-        <%= @the_appliance.year %>
-      </dd>
-
-      <dt>
-        Last serviced
-      </dt>
-      <dd>
-        <%= @the_appliance.last_serviced %>
-      </dd>
-
-      <dt>
-        Service due
-      </dt>
-      <dd>
-        <%= @the_appliance.service_due %>
-      </dd>
-
-      <dt>
-        Notes
-      </dt>
-      <dd>
-        <%= @the_appliance.notes %>
-      </dd>
-
-      <dt>
-        House
-      </dt>
-      <dd>
-        <%= @the_appliance.house.street_address %>
-      </dd>
-
-    </dl>
+    <div class="col-md-3">
+      <h2>
+        Edit appliance
+      </h2>
+    </div>
   </div>
-</div>
 
-<hr>
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <img src="<%= @appliance_image %>" class="img-fluid rounded-start">
+    </div>
 
+    <div class="col-md-3">
+      <form action="/modify_appliance/<%= @the_appliance.id %>"  method="post" >
 
-<div>
-  <div>
-    <h2>
-      Edit appliance
-    </h2>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="house_id_box" class="form-label">
+              House
+            </label>
 
-    <form action="/modify_appliance/<%= @the_appliance.id %>"  method="post" >
-
-      <div>
-        <label for="house_id_box">
-          House
-        </label>
-
-        <select type="text" id="house_id_box" name="query_house_id">
-        <% @current_user.houses.each do |a_house|%>
-          <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
-        <% end %>
-        </select>
-      </div>
-
-      <div>
-        <label for="appliance_type_box">
-          Appliance type
-        </label>
-
-        <select type="text" id="appliance_type_box" name="query_appliance_type">
-          <option value="Air Conditioner">Air Conditioner</option>
-          <option value="Water Heater">Water Heater</option>
-          <option value="Sump Pump">Sump Pump</option>
-          <option value="Furnace">Furnace</option>
-          <option value="Range">Range</option>
-          <option value="Oven">Oven</option>
-          <option value="Stove">Stove</option>
-          <option value="Microwave">Microwave</option>
-          <option value="Dishwasher">Dishwasher</option>
-          <option value="Washing Machine">Washing Machine</option>
-          <option value="Dryer">Dryer</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="make_box">
-          Make
-        </label>
-
-        <input type="text" id="make_box" name="query_make" value="<%= @the_appliance.make %>">
-      </div>
-
-      <div>
-        <label for="model_box">
-          Model
-        </label>
-
-        <input type="text" id="model_box" name="query_model" value="<%= @the_appliance.model %>">
-      </div>
-
-      <div>
-        <label for="year_box">
-          Year
-        </label>
-
-        <input type="text" id="year_box" name="query_year" value="<%= @the_appliance.year %>">
-      </div>
-
-      <div>
-        <label for="last_serviced_box">
-          Last serviced
-        </label>
-
-        <input type="date" id="last_serviced_box" name="query_last_serviced" value="<%= @the_appliance.last_serviced %>">
-      </div>
-
-      <div>
-        <label for="notes_box">
-          Notes
-        </label>
-
-        <textarea id="notes_box" name="query_notes"><%= @the_appliance.notes %></textarea>
-      </div>
-
-      <div>
-        <label for="contact_id_box">
-          Contact
-        </label>
-        
-        <select type="text" id="contact_id_box" name="query_contact_id">
-          <option value=nil selected="selected">(None)</option>
-          <% @current_user.contacts.each do |a_contact|%>
-            <% if a_contact.contact_name != nil %>
-              <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
-            <% else %>
-              <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+            <select type="text" class="form-control" id="house_id_box" name="query_house_id">
+            <% @current_user.houses.each do |a_house|%>
+              <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
             <% end %>
-          <% end %>
-        </select>
-      </div>
+            </select>
+          </div>
 
-      <button>
-        Update appliance
-      </button>
-    </form>
+          <div class="col-md-6">
+            <label for="appliance_type_box" class="form-label">
+              Appliance type
+            </label>
+
+            <select type="text" class="form-control" id="appliance_type_box" name="query_appliance_type">
+              <option value="Air Conditioner">Air Conditioner</option>
+              <option value="Water Heater">Water Heater</option>
+              <option value="Sump Pump">Sump Pump</option>
+              <option value="Furnace">Furnace</option>
+              <option value="Range">Range</option>
+              <option value="Oven">Oven</option>
+              <option value="Stove">Stove</option>
+              <option value="Microwave">Microwave</option>
+              <option value="Dishwasher">Dishwasher</option>
+              <option value="Washing Machine">Washing Machine</option>
+              <option value="Dryer">Dryer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="make_box" class="form-label">
+              Make
+            </label>
+
+            <input type="text" class="form-control" id="make_box" name="query_make" value="<%= @the_appliance.make %>">
+          </div>
+
+          <div class="col-md-6">
+            <label for="model_box" class="form-label">
+              Model
+            </label>
+
+            <input type="text" class="form-control" id="model_box" name="query_model" value="<%= @the_appliance.model %>">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="year_box" class="form-label">
+              Year
+            </label>
+
+            <input type="text" class="form-control" id="year_box" name="query_year" value="<%= @the_appliance.year %>">
+          </div>
+
+          <div class="col-md-6">
+            <label for="last_serviced_box" class="form-label">
+              Last serviced
+            </label>
+
+            <input type="date" class="form-control" id="last_serviced_box" name="query_last_serviced" value="<%= @the_appliance.last_serviced %>">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="notes_box" class="form-label">
+            Notes
+          </label>
+
+          <textarea class="form-control" id="notes_box" name="query_notes"><%= @the_appliance.notes %></textarea>
+        </div>
+
+        <div>
+          <label for="contact_id_box" class="form-label">
+            Contact
+          </label>
+          
+          <select type="text" class="form-control" id="contact_id_box" name="query_contact_id">
+            <option value=nil selected="selected">(None)</option>
+            <% @current_user.contacts.each do |a_contact|%>
+              <% if a_contact.contact_name != nil %>
+                <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+              <% else %>
+                <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+
+        <button class="btn btn-primary mt-3">
+          Update appliance
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-3 offset-md-3">
+      <a class="btn btn-danger mt-1" href="/delete_appliance/<%= @the_appliance.id %>">
+            Delete appliance
+      </a>
+    </div>
   </div>
 </div>
 
-<hr>
