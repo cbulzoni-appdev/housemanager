@@ -1,118 +1,59 @@
-<div>
-  <div>
-    <h1>
-      Contact #<%= @the_contact.id %> details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/contacts">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_contact/<%= @the_contact.id %>">
-          Delete contact
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Company name
-      </dt>
-      <dd>
-        <%= @the_contact.company_name %>
-      </dd>
-
-      <dt>
-        Contact name
-      </dt>
-      <dd>
-        <%= @the_contact.contact_name %>
-      </dd>
-
-      <dt>
-        Contact type
-      </dt>
-      <dd>
-        <%= @the_contact.contact_type %>
-      </dd>
-
-      <dt>
-        Email
-      </dt>
-      <dd>
-        <%= @the_contact.email %>
-      </dd>
-
-      <dt>
-        Phone number
-      </dt>
-      <dd>
-        <%= @the_contact.phone_number %>
-      </dd>
-
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
+<div class="container-fluid">
+  <div class="col-md-3">
     <h2>
       Edit contact
     </h2>
 
     <form action="/modify_contact/<%= @the_contact.id %>"  method="post" >
-      <div>
-        <label for="company_name_box">
+      <div  class="mb-3">
+        <label for="company_name_box" class="form-label">
           Company name
         </label>
 
-        <input type="text" id="company_name_box" name="query_company_name" value="<%= @the_contact.company_name %>">
+        <input type="text" class="form-control" id="company_name_box" name="query_company_name" value="<%= @the_contact.company_name %>">
       </div>
 
-      <div>
-        <label for="contact_name_box">
+      <div class="mb-3">
+        <label for="contact_name_box" class="form-label">
           Contact name
         </label>
 
-        <input type="text" id="contact_name_box" name="query_contact_name" value="<%= @the_contact.contact_name %>">
+        <input type="text" class="form-control" id="contact_name_box" name="query_contact_name" value="<%= @the_contact.contact_name %>">
       </div>
 
-      <div>
-        <label for="contact_type_box">
+      <div class="mb-3">
+        <label for="contact_type_box" class="form-label">
           Contact type
         </label>
 
-        <input type="text" id="contact_type_box" name="query_contact_type" value="<%= @the_contact.contact_type %>">
+        <input type="text" class="form-control" id="contact_type_box" name="query_contact_type" value="<%= @the_contact.contact_type %>">
       </div>
 
-      <div>
-        <label for="email_box">
+      <div class="mb-3">
+        <label for="email_box" class="form-label">
           Email
         </label>
 
-        <input type="text" id="email_box" name="query_email" value="<%= @the_contact.email %>">
+        <input type="text" class="form-control" id="email_box" name="query_email" value="<%= @the_contact.email %>">
       </div>
 
-      <div>
-        <label for="phone_number_box">
+      <div class="mb-3">
+        <label for="phone_number_box" class="form-label">
           Phone number
         </label>
 
-        <input type="text" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
+        <input type="text" class="form-control" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
       </div>
 
-      <button>
+      <button class="btn btn-primary mb-3"">
         Update contact
       </button>
     </form>
+    
+    <a class="btn btn-danger mt-1" href="/delete_contact/<%= @the_contact.id %>">
+      Delete contact
+    </a>
+    
   </div>
 </div>
 
-<hr>
