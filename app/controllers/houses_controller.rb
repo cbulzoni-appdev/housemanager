@@ -14,6 +14,9 @@ class HousesController < ApplicationController
 
     @the_house = matching_houses.at(0)
 
+    the_house_address = @the_house.street_address + @the_house.city + @the_house.state
+    @street_view_image = "https://maps.googleapis.com/maps/api/streetview?size=300x300&location=#{the_house_address}&key=#{ENV.fetch("CB_GMAPS_KEY")}"
+
     render({ :template => "houses/show.html.erb" })
   end
 

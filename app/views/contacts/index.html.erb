@@ -3,7 +3,7 @@
   <div class="row mb-3">
     <div class="col-md-12">
       <h2><%= @current_user.first_name %>'s Rolodex</h2>
-      <table border="1">
+      <table class="table table-striped table-bordered">
         <tr>
           <th>
             Company name
@@ -56,23 +56,23 @@
 
           <td>
             <a href="/contacts/<%= a_contact.id %>">
-              Show details
+              Edit details
             </a>
           </td>
           
           <td>
 
             <div class="dropdown">
-              <% if a_contact.contact_name != nil %>
-                <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.contact_name %> <span class="caret"></span></button>
+              <% if a_contact.contact_name == "" %>
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.company_name %> <span class="caret"></span></button>
               <% else %>
-                <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.contact_name %> <span class="caret"></span></button>
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Contact <%= a_contact.contact_name %> <span class="caret"></span></button>
               <% end %>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <% if a_contact.phone_number != nil %>
+                <% if a_contact.phone_number != "" %>
                   <li><a href="#" data-toggle="modal" data-target="#ModalTextForm">Text message</a></li>
                 <% end %>
-                <% if a_contact.email != nil %>
+                <% if a_contact.email != "" %>
                   <li><a href="#" data-toggle="modal" data-target="#ModalEmailForm">Email</a></li>
                 <% end %>
               </ul>
@@ -155,7 +155,7 @@
         Add a new contact
       </h2>
 
-      <form action="/insert_contact" method="post">
+      <form action="/insert_contact" method="post" class="bg-light text-dark">
         <div class="row mb-3">
           <div class="col">
             <label for="company_name_box" class="form-label">
