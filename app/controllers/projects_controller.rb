@@ -28,6 +28,8 @@ class ProjectsController < ApplicationController
     the_project.notes = params.fetch("query_notes")
     the_project.house_id = params.fetch("query_house_id")
     the_project.contact_id = params.fetch("query_contact_id")
+    the_project.priority = params.fetch("query_priority")
+    the_project.estimated_cost = params.fetch("query_estimated_cost")
 
     if the_project.valid?
       the_project.save
@@ -48,6 +50,8 @@ class ProjectsController < ApplicationController
     the_project.notes = params.fetch("query_notes")
     the_project.house_id = params.fetch("query_house_id")
     the_project.contact_id = params.fetch("query_contact_id")
+    the_project.priority = params.fetch("query_priority")
+    the_project.estimated_cost = params.fetch("query_estimated_cost")
 
     if the_project.valid?
       the_project.save

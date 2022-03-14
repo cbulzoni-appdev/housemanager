@@ -118,12 +118,34 @@
         <textarea id="description_box" name="query_description"><%= @the_project.description %></textarea>
       </div>
 
+      <label for="priority_box">
+        Priority
+      </label>
+
+      <select type="text" id="priority_box" name="query_priority">
+        <option value ="Low">Low</option>
+        <option value ="Medium">Medium</option>
+        <option value ="High">High</option>
+      </select>
+
+      <div>
+        <label for="estimated_cost_box">
+          Estimated Cost
+        </label>
+
+        <input type="float" id="estimated_cost_box" name="query_estimated_cost">
+      </div>
+
       <div>
         <label for="status_box">
           Status
         </label>
 
-        <input type="text" id="status_box" name="query_status" value="<%= @the_project.status %>">
+        <select type="text" id="status_box" name="query_status">
+          <option value ="Not Yet Started">Not Yet Started</option>
+          <option value ="In Progress">In Progress</option>
+          <option value ="Completed">Completed</option>
+        </select>
       </div>
 
       <div>

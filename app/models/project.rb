@@ -6,7 +6,9 @@
 #  date_completed :date
 #  date_started   :date
 #  description    :text
+#  estimated_cost :float
 #  notes          :text
+#  priority       :string
 #  status         :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
