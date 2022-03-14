@@ -2,7 +2,9 @@ class AppliancesController < ApplicationController
   def index
     matching_appliances = @current_user.appliances.all
 
-    @list_of_appliances = matching_appliances.order({ :category => :desc, :year => :desc })
+    @q = matching_appliances.order({ :category => :desc, :year => :desc }).ransack(params[:q])
+
+    @list_of_appliances = @q.result
 
     render({ :template => "appliances/index.html.erb" })
   end

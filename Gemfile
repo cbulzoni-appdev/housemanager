@@ -15,6 +15,7 @@ gem 'sassc-rails'
 gem 'faker'
 gem 'twilio-ruby'
 gem 'mailgun-ruby'
+gem 'ransack'
 
 group :development do
   gem 'htmlbeautifier'
