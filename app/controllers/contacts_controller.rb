@@ -2,7 +2,9 @@ class ContactsController < ApplicationController
   def index
     matching_contacts = @current_user.contacts.all
 
-    @list_of_contacts = matching_contacts.order({ :created_at => :desc })
+    @q = matching_contacts.order({ :created_at => :desc }).ransack(params[:q])
+
+    @list_of_contacts = @q.result
 
     render({ :template => "contacts/index.html.erb" })
   end

@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
   def index
     matching_projects = @current_user.projects.all
 
-    @list_of_projects = matching_projects.order({ :created_at => :desc })
+    @q = matching_projects.order({ :created_at => :desc }).ransack(params[:q])
+
+    @list_of_projects = @q.result
 
     render({ :template => "projects/index.html.erb" })
   end

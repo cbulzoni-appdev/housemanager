@@ -3,6 +3,29 @@
   <div class="row mb-3">
     <div class="col-md-12">
       <h2><%= @current_user.first_name %>'s Rolodex</h2>
+      <%= search_form_for @q do |f| %>
+
+        <div class="row mb-3">
+          <div class="col-md-3">
+            <%= f.label :contact_name_cont, "Contact Name:" %>
+            <%= f.text_field :contact_name_cont, :placeholder => "Type in contact name..." %>
+          </div>
+
+          <div class="col-md-3">
+            <%= f.label :company_name_cont, "Company name:" %>
+            <%= f.text_field :company_name_cont, :placeholder => "Type in company name..." %>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-1">
+            <%= f.submit :class => "btn btn-primary btn-block" %>
+          </div>
+        </div>
+    
+        <a href="/contacts">Clear filters</a>
+      <% end %>
+
       <table class="table table-striped table-bordered">
         <tr>
           <th>

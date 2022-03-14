@@ -3,26 +3,30 @@
   <div class="row mb-3">
     <div class="col-md-12">
       <div>
-        <h2><%= @current_user.first_name %>'s Appliances</h2>
+        <h2 class="mb-3"><%= @current_user.first_name %>'s Appliances</h2>
         <%= search_form_for @q do |f| %>
-          <p>Narrow results:</p>
 
-          <div>
-            <%= f.label :category_cont, "Category is" %>
-            <%= f.text_field :category_cont, :placeholder => "Enter a few characters" %>
+          <div class="row mb-3">
+            <div class="col-md-2">
+              <%= f.label :category_cont, "Category:" %>
+              <%= f.text_field :category_cont, :placeholder => "E.g. Mechanical" %>
+            </div>
+
+            <div class="col-md-3">
+              <%= f.label :appliance_type_cont, "Appliance type:" %>
+              <%= f.text_field :appliance_type_cont, :placeholder => "E.g. Furnace" %>
+            </div>
           </div>
 
-          <div>
-            <%= f.label :appliance_type_gteq, "Appliance type:" %>
-            <%= f.text_field :appliance_type_cont, :placeholder => "Year greater than or equal to" %>
+          <div class="row mb-3">
+            <div class="col-md-1">
+              <%= f.submit :class => "btn btn-primary btn-block" %>
+            </div>
           </div>
-          
-          <div class="col-md-2">
-            <%= f.submit :class => "btn btn-primary btn-block" %>
-          </div>
-
+      
           <a href="/appliances">Clear filters</a>
         <% end %>
+
         <table class="table table-striped table-bordered">
           <tr>
             <th>
