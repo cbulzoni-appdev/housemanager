@@ -1,59 +1,155 @@
 <div class="container-fluid">
-  <div class="col-md-3">
-    <h2>
-      Edit contact
-    </h2>
+  <div class="row">
+  
+    <div class="col-md-3">
+      <div class="contact-box center-version">
+          <img alt="image" class="img-circle" src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png">
+          <% if @the_contact.contact_name != "" %>
+            <h3 class="m-b-xs"><strong><%= @the_contact.contact_name %></strong></h3>
+            <% if @the_contact.company_name != "" %>
+              <h5 class="m-b-xs"><%= @the_contact.company_name %></h5>
+            <% end %>
+          <% else %>
+            <h3 class="m-b-xs"><%= @the_contact.company_name %></h3>
+          <% end %>
 
-    <form action="/modify_contact/<%= @the_contact.id %>"  method="post" >
-      <div  class="mb-3">
-        <label for="company_name_box" class="form-label">
-          Company name
-        </label>
-
-        <input type="text" class="form-control" id="company_name_box" name="query_company_name" value="<%= @the_contact.company_name %>">
+          <div class="font-bold"><%= @the_contact.contact_type %></div>
+          <address class="m-t-md">
+              <abbr title="Phone">P:</abbr> <%= @the_contact.phone_number %><br>
+              <abbr title="Email">E:</abbr> <%= @the_contact.email %>
+          </address>
+  
+          <div class="contact-box-footer">
+              <div class="m-t-xs btn-group">
+                  <a href="#" data-toggle="modal" data-target="#ModalTextForm" class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Text message </a>
+                  <a href="#" data-toggle="modal" data-target="#ModalTextForm" class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+              </div>
+          </div>
+  
       </div>
 
-      <div class="mb-3">
-        <label for="contact_name_box" class="form-label">
-          Contact name
-        </label>
+        <!-- Modal -->
+      <div id="ModalTextForm" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Send a text</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" method="POST" action="/send_contact_text/<%= @the_contact.id %>">
+                <label for="message_box" class="form-label">
+                  Message
+                </label>
 
-        <input type="text" class="form-control" id="contact_name_box" name="query_contact_name" value="<%= @the_contact.contact_name %>">
+                <textarea class="form-control" id="message_box" name="query_message" rows="3"></textarea>
+
+                <button type="submit" class="btn btn-primary">
+                  Send Text
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="contact_type_box" class="form-label">
-          Contact type
-        </label>
+      <!-- Modal -->
+      <div id="ModalEmailForm" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Send an email</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" method="POST" action="/send_contact_email/<%= @the_contact.id %>">
+                <label for="subject_box" class="form-label">
+                  Subject Line
+                </label>
 
-        <input type="text" class="form-control" id="contact_type_box" name="query_contact_type" value="<%= @the_contact.contact_type %>">
+                <textarea class="form-control" id="subject_box" name="query_subject" rows="1"></textarea>
+
+                <label for="message_box" class="form-label">
+                  Message
+                </label>
+
+                <textarea class="form-control" id="message_box" name="query_message" rows="3"></textarea>
+
+                <button type="submit" class="btn btn-primary">
+                  Send Email
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="mb-3">
-        <label for="email_box" class="form-label">
-          Email
-        </label>
+    </div> 
 
-        <input type="text" class="form-control" id="email_box" name="query_email" value="<%= @the_contact.email %>">
-      </div>
+    <div class="col-md-3">
+      <h2>
+        Edit contact
+      </h2>
 
-      <div class="mb-3">
-        <label for="phone_number_box" class="form-label">
-          Phone number
-        </label>
+      <form action="/modify_contact/<%= @the_contact.id %>"  method="post" >
+        <div  class="mb-3">
+          <label for="company_name_box" class="form-label">
+            Company name
+          </label>
 
-        <input type="text" class="form-control" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
-      </div>
+          <input type="text" class="form-control" id="company_name_box" name="query_company_name" value="<%= @the_contact.company_name %>">
+        </div>
 
-      <button class="btn btn-primary mb-3"">
-        Update contact
-      </button>
-    </form>
-    
-    <a class="btn btn-danger mt-1" href="/delete_contact/<%= @the_contact.id %>">
-      Delete contact
-    </a>
-    
+        <div class="mb-3">
+          <label for="contact_name_box" class="form-label">
+            Contact name
+          </label>
+
+          <input type="text" class="form-control" id="contact_name_box" name="query_contact_name" value="<%= @the_contact.contact_name %>">
+        </div>
+
+        <div class="mb-3">
+          <label for="contact_type_box" class="form-label">
+            Contact type
+          </label>
+
+          <input type="text" class="form-control" id="contact_type_box" name="query_contact_type" value="<%= @the_contact.contact_type %>">
+        </div>
+
+        <div class="mb-3">
+          <label for="email_box" class="form-label">
+            Email
+          </label>
+
+          <input type="text" class="form-control" id="email_box" name="query_email" value="<%= @the_contact.email %>">
+        </div>
+
+        <div class="mb-3">
+          <label for="phone_number_box" class="form-label">
+            Phone number
+          </label>
+
+          <input type="text" class="form-control" id="phone_number_box" name="query_phone_number" value="<%= @the_contact.phone_number %>">
+        </div>
+
+        <button class="btn btn-primary mb-3"">
+          Update contact
+        </button>
+      </form>
+      
+      <a class="btn btn-danger mt-1" href="/delete_contact/<%= @the_contact.id %>">
+        Delete contact
+      </a>
+      
+    </div>
   </div>
 </div>
 

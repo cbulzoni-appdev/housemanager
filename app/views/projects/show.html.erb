@@ -1,198 +1,134 @@
-<div>
-  <div>
-    <h1>
-      Project Details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/projects">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_project/<%= @the_project.id %>">
-          Delete project
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_project.description %>
-      </dd>
-
-      <dt>
-        Contact
-      </dt>
-      <% if @the_project.contact_id != nil %>
-          <% if @the_project.contact.contact_name != nil %>
-            <dd>
-              <a class="btn btn-primary" href="/contacts/<%= @the_project.contact.id %>" role="button">
-                <%= @the_project.contact.contact_name %>
-              </a>
-            </td>
-          <% else %>
-            <td>
-              <a class="btn btn-primary" href="/contacts/<%= @the_project.contact.id %>" role="button">
-                <%= @the_project.contact.company_name %>
-              </a>
-            </dd>
-          <% end %>
-        <% else %>
-          <dd>
-          </dd>
-        <% end %>
-
-      <dt>
-        Status
-      </dt>
-      <dd>
-        <%= @the_project.status %>
-      </dd>
-
-      <dt>
-        Date started
-      </dt>
-      <dd>
-        <%= @the_project.date_started %>
-      </dd>
-
-      <dt>
-        Date completed
-      </dt>
-      <dd>
-        <%= @the_project.date_completed %>
-      </dd>
-
-      <dt>
-        Notes
-      </dt>
-      <dd>
-        <%= @the_project.notes %>
-      </dd>
-
-      <dt>
-        House
-      </dt>
-      <dd>
-        <%= @the_project.house.street_address %>
-      </dd>
-
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-
-<div>
-  <div>
+<div class="container-fluid">
+  <div class="col-md-5">
     <h2>
       Edit project
     </h2>
 
     <form action="/modify_project/<%= @the_project.id %>"  method="post" >
 
-      <div>
-        <label for="house_id_box">
-          House
-        </label>
-        
-        <select type="text" id="house_id_box" name="query_house_id">
-        <% @current_user.houses.each do |a_house|%>
-          <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
-        <% end %>
-        </select>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="house_id_box" class="form-label">
+            House
+          </label>
+          
+          <select type="text" class="form-control" id="house_id_box" name="query_house_id">
+          <% @current_user.houses.each do |a_house|%>
+            <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
+          <% end %>
+          </select>
+        </div>
       </div>
 
       <div>
-        <label for="description_box">
+        <label for="description_box" class="form-label">
           Description
         </label>
 
-        <textarea id="description_box" name="query_description"><%= @the_project.description %></textarea>
+        <textarea id="description_box" name="query_description" class="form-control"><%= @the_project.description %></textarea>
       </div>
 
-      <label for="priority_box">
-        Priority
-      </label>
+      <div class="row mb-3">
+        <div class="col">
+          <label for="priority_box" class="form-label">
+            Priority
+          </label>
 
-      <select type="text" id="priority_box" name="query_priority">
-        <option value ="Low">Low</option>
-        <option value ="Medium">Medium</option>
-        <option value ="High">High</option>
-      </select>
+          <select type="text" class="form-control" id="priority_box" name="query_priority">
+            <% if @the_project.priority == "Low" %>
+              <option value ="Low" selected>Low</option>
+              <option value ="Medium">Medium</option>
+              <option value ="High">High</option>
+            <% elsif @the_project.priority == "Medium" %>
+              <option value ="Low">Low</option>
+              <option value ="Medium" selected>Medium</option>
+              <option value ="High">High</option>
+            <% else %>
+              <option value ="Low">Low</option>
+              <option value ="Medium">Medium</option>
+              <option value ="High" selected>High</option>
+            <% end %>
+          </select>
+        </div>
 
-      <div>
-        <label for="estimated_cost_box">
-          Estimated Cost
-        </label>
+        <div class="col">
+          <label for="estimated_cost_box" class="form-label">
+            Estimated Cost
+          </label>
 
-        <input type="float" id="estimated_cost_box" name="query_estimated_cost">
+          <input type="float" class="form-control" id="estimated_cost_box" name="query_estimated_cost" value="<%= @the_project.estimated_cost %>">
+        </div>
       </div>
 
-      <div>
-        <label for="status_box">
-          Status
-        </label>
+      <div class="row mb-3">
+        <div class="col">
+          <label for="status_box" class="form-label">
+            Status
+          </label>
 
-        <select type="text" id="status_box" name="query_status">
-          <option value ="Not Yet Started">Not Yet Started</option>
-          <option value ="In Progress">In Progress</option>
-          <option value ="Completed">Completed</option>
-        </select>
+          <select type="text" class="form-control" id="status_box" name="query_status">
+          <% if @the_project.status == "Not Yet Started" %>
+              <option value ="Not Yet Started" selected>Not Yet Started</option>
+              <option value ="In Progress">In Progress</option>
+              <option value ="Completed">Completed</option>
+          <% elsif @the_project.status == "In Progress" %>
+            <option value ="Not Yet Started">Not Yet Started</option>
+            <option value ="In Progress" selected>In Progress</option>
+            <option value ="Completed">Completed</option>
+          <% else %>
+            <option value ="Not Yet Started">Not Yet Started</option>
+            <option value ="In Progress">In Progress</option>
+            <option value ="Completed" selected>Completed</option>
+          <% end %>
+          </select>
+        </div>
+
+        <div class="col">
+          <label for="date_started_box" class="form-label">
+            Date started
+          </label>
+
+          <input type="date" class="form-control" id="date_started_box" name="query_date_started" value="<%= @the_project.date_started %>">
+        </div>
+
+        <div class="col">
+          <label for="date_completed_box" class="form-label">
+            Date completed
+          </label>
+
+          <input type="date" class="form-control" id="date_completed_box" name="query_date_completed" value="<%= @the_project.date_completed %>">
+        </div>
       </div>
 
-      <div>
-        <label for="date_started_box">
-          Date started
-        </label>
-
-        <input type="date" id="date_started_box" name="query_date_started" value="<%= @the_project.date_started %>">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="contact_id_box" class="form-label">
+            Contact
+          </label>
+          
+          <select type="text" class="form-control" id="contact_id_box" name="query_contact_id">
+          <% @current_user.contacts.each do |a_contact|%>
+            <% if a_contact.contact_name != nil %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+            <% else %>
+              <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+            <% end %>
+          <% end %>
+          </select>
+        </div>
       </div>
 
-      <div>
-        <label for="date_completed_box">
-          Date completed
-        </label>
-
-        <input type="date" id="date_completed_box" name="query_date_completed" value="<%= @the_project.date_completed %>">
-      </div>
-
-      <div>
-        <label for="notes_box">
+      <div class="mb-3">
+        <label for="notes_box" class="form-label">
           Notes
         </label>
 
-        <textarea id="notes_box" name="query_notes"><%= @the_project.notes %></textarea>
+        <textarea id="notes_box" name="query_notes" class="form-control"><%= @the_project.notes %></textarea>
       </div>
 
-      <div>
-        <label for="contact_id_box">
-          Contact
-        </label>
-        
-        <select type="text" id="contact_id_box" name="query_contact_id">
-        <% @current_user.contacts.each do |a_contact|%>
-          <% if a_contact.contact_name != nil %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
-          <% else %>
-            <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
-          <% end %>
-        <% end %>
-        </select>
-      </div>
-
-      <button>
+      <button class="btn btn-primary">
         Update project
       </button>
     </form>
   </div>
 </div>
-
-<hr>
