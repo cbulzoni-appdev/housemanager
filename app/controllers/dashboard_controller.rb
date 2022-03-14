@@ -40,6 +40,10 @@ class DashboardController < ApplicationController
 
       @street_view_image = "https://maps.googleapis.com/maps/api/streetview?size=300x300&location=#{primary_house_address}&key=#{ENV.fetch("CB_GMAPS_KEY")}"
 
+      @total_cost_nys_projects = @current_user.projects.where({ :status => "Not Yet Started"}).sum(:estimated_cost)
+      @total_cost_ip_projects = @current_user.projects.where({ :status => "In Progress"}).sum(:estimated_cost)
+      @total_cost_c_projects = @current_user.projects.where({ :status => "Completed"}).sum(:estimated_cost)
+
       render({ :template => "homepage/user_dashboard.html.erb"})
     end
   end
