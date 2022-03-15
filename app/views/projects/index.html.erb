@@ -79,7 +79,23 @@
           </td>
 
           <td>
-            <%= a_project.status %>
+            <div class="dropdown">
+              <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <%= a_project.status %><span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <% if a_project.status == "Not Yet Started" %>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/In Progress" class="dropdown-item">Mark as In Progress</a></li>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/Completed" class="dropdown-item" class="dropdown-item">Mark as Complete</a></li>
+              <% elsif a_project.status == "In Progress" %>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/Not Yet Started" class="dropdown-item">Mark as Not Yet Started</a></li>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/Completed" class="dropdown-item" class="dropdown-item">Mark as Complete</a></li>
+              <% elsif a_project.status == "Completed" %>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/Not Yet Started" class="dropdown-item">Mark as Not Yet Started</a></li>
+                <li><a href="/update_project_status/<%= a_project.id %>/<%= a_project.status %>/In Progress" class="dropdown-item">Mark as In Progress</a></li>
+              <% end %>
+              </ul>
+            </div>
           </td>
 
           <td>

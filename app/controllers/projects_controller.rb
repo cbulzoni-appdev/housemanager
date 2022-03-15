@@ -69,4 +69,42 @@ class ProjectsController < ApplicationController
 
     redirect_to("/projects", { :notice => "Project deleted successfully."} )
   end
+
+  def update_status
+    the_id = params.fetch("path_id")
+    the_project = Project.where({ :id => the_id }).at(0)
+
+    current_status = params.fetch("path_current_status")
+    new_status = params.fetch("path_new_status")
+
+    the_project.status = new_status
+
+    if current_status == "Not Yet Started" && new_status == "In Progress"
+      the_project.date_started = Date.today
+    elsif current_status == "Not Yet Started" && new_status == "Completed"
+      the_project.date_started = Date.today
+      the_project.date_completed = Date.today
+    elsif current_status == "In Progress" && new_status == "Completed"
+      if the_project.date_started == nil
+        the_project.date_started = Date.today
+      end
+      the_project.date_completed = Date.today
+    elsif current_status == "In Progress" && new_status == "Not Yet Started"
+      the_project.date_started = nil
+      the_project.date_completed = nil
+    elsif current_status == "Completed" && new_status == "In Progress"
+      the_project.date_completed = nil
+    elsif current_status == "Completed" && new_status == "Not Yet Started"
+      the_project.date_started = nil
+      the_project.date_completed = nil
+    end
+    
+    if the_project.valid?
+      the_project.save
+      redirect_to("/projects", { :notice => "Project updated successfully."} )
+    else
+      redirect_to("/projects", { :alert => the_project.errors.full_messages.to_sentence })
+    end
+  
+  end
 end

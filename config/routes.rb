@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   # DELETE
   get("/delete_project/:path_id", { :controller => "projects", :action => "destroy" })
 
+  # UPDATE STATUS
+
+  get("/update_project_status/:path_id/:path_current_status/:path_new_status", { :controller => "projects", :action => "update_status"})
+
   #------------------------------
 
   # Routes for the User account:
