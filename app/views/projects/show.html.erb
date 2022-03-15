@@ -35,18 +35,18 @@
           </label>
 
           <select type="text" class="form-control" id="priority_box" name="query_priority">
-            <% if @the_project.priority == "Low" %>
-              <option value ="Low" selected>Low</option>
-              <option value ="Medium">Medium</option>
-              <option value ="High">High</option>
-            <% elsif @the_project.priority == "Medium" %>
-              <option value ="Low">Low</option>
-              <option value ="Medium" selected>Medium</option>
-              <option value ="High">High</option>
+            <% if @the_project.priority == "3-Low" %>
+              <option value ="3-Low" selected>3-Low</option>
+              <option value ="2-Medium">2-Medium</option>
+              <option value ="1-High">1-High</option>
+            <% elsif @the_project.priority == "2-Medium" %>
+              <option value ="3-Low">3-Low</option>
+              <option value ="2-Medium" selected>2-Medium</option>
+              <option value ="1-High">1-High</option>
             <% else %>
-              <option value ="Low">Low</option>
-              <option value ="Medium">Medium</option>
-              <option value ="High" selected>High</option>
+              <option value ="3-Low">3-Low</option>
+              <option value ="2-Medium">2-Medium</option>
+              <option value ="1-High" selected>1-High</option>
             <% end %>
           </select>
         </div>
