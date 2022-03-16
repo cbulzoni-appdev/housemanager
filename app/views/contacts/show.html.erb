@@ -21,8 +21,12 @@
   
           <div class="contact-box-footer">
               <div class="m-t-xs btn-group">
+                <% if @the_contact.phone_number != nil && @the_contact.phone_number != "" %>
                   <a href="#" data-toggle="modal" data-target="#ModalTextForm" class="btn btn-xs btn-white"><i class="fa fa-phone"></i> Text message </a>
+                <% end %>
+                <% if @the_contact.email != nil && @the_contact.email != "" %>
                   <a href="#" data-toggle="modal" data-target="#ModalTextForm" class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                <% end %>
               </div>
           </div>
   

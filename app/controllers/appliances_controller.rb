@@ -6,6 +6,9 @@ class AppliancesController < ApplicationController
 
     @list_of_appliances = @q.result
 
+    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
+                                "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
+
     render({ :template => "appliances/index.html.erb" })
   end
 
@@ -15,6 +18,9 @@ class AppliancesController < ApplicationController
     matching_appliances = Appliance.where({ :id => the_id })
 
     @the_appliance = matching_appliances.at(0)
+
+    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
+                                "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
 
     if @the_appliance.appliance_type == "Furnace"
       @appliance_image = 'https://www.servicechampions.net/wp-content/uploads/2015/03/new-furnace-installation-1.jpg'

@@ -29,7 +29,11 @@
 
             <select type="text" class="form-control" id="house_id_box" name="query_house_id">
             <% @current_user.houses.each do |a_house|%>
-              <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
+              <% if a_house.id = @the_appliance.house_id %>
+                <Option value="<%= a_house.id %>" selected><%= a_house.street_address %></option>
+              <% else %>
+                <Option value="<%= a_house.id %>"><%= a_house.street_address %></option>
+              <% end %>
             <% end %>
             </select>
           </div>
@@ -40,18 +44,13 @@
             </label>
 
             <select type="text" class="form-control" id="appliance_type_box" name="query_appliance_type">
-              <option value="Air Conditioner">Air Conditioner</option>
-              <option value="Water Heater">Water Heater</option>
-              <option value="Sump Pump">Sump Pump</option>
-              <option value="Furnace">Furnace</option>
-              <option value="Range">Range</option>
-              <option value="Oven">Oven</option>
-              <option value="Stove">Stove</option>
-              <option value="Microwave">Microwave</option>
-              <option value="Dishwasher">Dishwasher</option>
-              <option value="Washing Machine">Washing Machine</option>
-              <option value="Dryer">Dryer</option>
-              <option value="Other">Other</option>
+              <% @possible_appliance_types.each do |a_type| %>
+                <% if a_type == @the_appliance.appliance_type %>
+                  <option value="<%= a_type %>" selected><%= a_type %></option>
+                <% else %>
+                  <option value="<%= a_type %>"><%= a_type %></option>
+                <% end %>
+              <% end %>
             </select>
           </div>
         </div>
@@ -106,12 +105,25 @@
           </label>
           
           <select type="text" class="form-control" id="contact_id_box" name="query_contact_id">
-            <option value=nil selected="selected">(None)</option>
+            <% if @the_appliance.contact_id == nil %>
+              <Option value= nil selected>(None)</option>
+            <% else %>
+              <Option value= nil selected>(None)</option>
+            <% end %>
+
             <% @current_user.contacts.each do |a_contact|%>
-              <% if a_contact.contact_name != nil %>
-                <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+              <% if a_contact.contact_name != nil && a_contact.contact_name != "" %>
+                <% if a_contact.id == @the_appliance.contact_id %>
+                  <Option value="<%= a_contact.id %>" selected><%= a_contact.contact_name %></option>
+                <% else %>
+                  <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+                <% end %>
               <% else %>
-                <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+                <% if a_contact.id == @the_appliance.contact_id %>
+                  <Option value="<%= a_contact.id %>" selected><%= a_contact.company_name %></option>
+                <% else %>
+                  <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+                <% end %>
               <% end %>
             <% end %>
           </select>
