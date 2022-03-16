@@ -102,8 +102,8 @@
             <%= number_to_currency(a_project.estimated_cost, precision: 0)  %>
           </td>
 
-          <% if a_project.contact_id != nil %>
-            <% if a_project.contact.contact_name != nil %>
+          <% if a_project.contact_id != nil && a_project.contact_id != 0 %>
+            <% if a_project.contact.contact_name != nil && a_project.contact.contact_name != "" %>
               <td>
                 <a href="/contacts/<%= a_project.contact.id %>">
                   <%= a_project.contact.contact_name %>
@@ -118,6 +118,7 @@
             <% end %>
           <% else %>
             <td>
+              None - DIY
             </td>
           <% end %>
 
@@ -247,12 +248,13 @@
             
             <select type="text" class="form-control" id="contact_id_box" name="query_contact_id">
             <% @current_user.contacts.each do |a_contact|%>
-              <% if a_contact.contact_name != nil %>
+              <% if a_contact.contact_name != nil && a_contact.contact_name != "" %>
                 <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
               <% else %>
                 <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
               <% end %>
             <% end %>
+              <Option value = nil selected>None - DIY</option>
             </select>
           </div>
         </div>

@@ -107,13 +107,28 @@
           </label>
           
           <select type="text" class="form-control" id="contact_id_box" name="query_contact_id">
+          <% if @the_project.contact_id == nil %>
+            <Option value= nil selected>None - DIY</option>
+          <% else %>
+            <Option value= nil selected>None - DIY</option>
+          <% end %>
+          
           <% @current_user.contacts.each do |a_contact|%>
-            <% if a_contact.contact_name != nil %>
-              <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+            <% if a_contact.contact_name != nil && a_contact.contact_name != "" %>
+              <% if a_contact.id == @the_project.contact_id %>
+                <Option value="<%= a_contact.id %>" selected><%= a_contact.contact_name %></option>
+              <% else %>
+                <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+              <% end %>
             <% else %>
-              <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+              <% if a_contact.id == @the_project.contact_id %>
+                <Option value="<%= a_contact.id %>" selected><%= a_contact.company_name %></option>
+              <% else %>
+                <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+              <% end %>
             <% end %>
           <% end %>
+
           </select>
         </div>
       </div>
