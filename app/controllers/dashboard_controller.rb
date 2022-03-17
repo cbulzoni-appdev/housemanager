@@ -40,9 +40,26 @@ class DashboardController < ApplicationController
 
       @street_view_image = "https://maps.googleapis.com/maps/api/streetview?size=300x300&location=#{primary_house_address}&key=#{ENV.fetch("CB_GMAPS_KEY")}"
 
+      @total_cost_nys_high_projects = @current_user.projects.where({ :status => "Not Yet Started", :priority => "1-High"}).sum(:estimated_cost)
+      @total_cost_nys_med_projects = @current_user.projects.where({ :status => "Not Yet Started", :priority => "2-Medium"}).sum(:estimated_cost)
+      @total_cost_nys_low_projects = @current_user.projects.where({ :status => "Not Yet Started", :priority => "3-Low"}).sum(:estimated_cost)
+      @total_cost_ip_high_projects = @current_user.projects.where({ :status => "In Progress", :priority => "1-High"}).sum(:estimated_cost)
+      @total_cost_ip_med_projects = @current_user.projects.where({ :status => "In Progress", :priority => "2-Medium"}).sum(:estimated_cost)
+      @total_cost_ip_low_projects = @current_user.projects.where({ :status => "In Progress", :priority => "3-Low"}).sum(:estimated_cost)
+      @total_cost_comp_high_projects = @current_user.projects.where({ :status => "Completed", :priority => "1-High"}).sum(:estimated_cost)
+      @total_cost_comp_med_projects = @current_user.projects.where({ :status => "Completed", :priority => "2-Medium"}).sum(:estimated_cost)
+      @total_cost_comp_low_projects = @current_user.projects.where({ :status => "Completed", :priority => "3-Low"}).sum(:estimated_cost)
+
       @total_cost_nys_projects = @current_user.projects.where({ :status => "Not Yet Started"}).sum(:estimated_cost)
       @total_cost_ip_projects = @current_user.projects.where({ :status => "In Progress"}).sum(:estimated_cost)
-      @total_cost_c_projects = @current_user.projects.where({ :status => "Completed"}).sum(:estimated_cost)
+      @total_cost_comp_projects = @current_user.projects.where({ :status => "Completed"}).sum(:estimated_cost)
+
+      @total_cost_high_projects = @current_user.projects.where({ :priority => "1-High"}).sum(:estimated_cost)
+      @total_cost_med_projects = @current_user.projects.where({ :priority => "2-Medium"}).sum(:estimated_cost)
+      @total_cost_low_projects = @current_user.projects.where({ :priority => "3-Low"}).sum(:estimated_cost)
+
+      @total_cost_projects = @current_user.projects.sum(:estimated_cost)
+
 
       render({ :template => "homepage/user_dashboard.html.erb"})
     end

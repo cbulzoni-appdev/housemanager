@@ -64,23 +64,31 @@
         <tbody>
           <tr>
             <th scope="row">Not Yet Started</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td></td>
+            <td><%= number_to_currency(@total_cost_nys_high_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_nys_med_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_nys_low_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_nys_projects, precision:0) %></td>
           </tr>
           <tr>
             <th scope="row">In Progress</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td></td>
+            <td><%= number_to_currency(@total_cost_ip_high_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_ip_med_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_ip_low_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_ip_projects, precision:0) %></td>
           </tr>
           <tr>
             <th scope="row">Completed</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-            <td></td>
+            <td><%= number_to_currency(@total_cost_comp_high_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_comp_med_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_comp_low_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_comp_projects, precision:0) %></td>
+          </tr>
+          <tr>
+            <th scope="row">Total</th>
+            <td><%= number_to_currency(@total_cost_high_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_med_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_low_projects, precision:0) %></td>
+            <td><%= number_to_currency(@total_cost_projects, precision:0) %></td>
           </tr>
         </tbody>
       </table>
