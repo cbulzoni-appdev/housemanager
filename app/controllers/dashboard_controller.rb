@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
       @list_of_appliances = matching_appliances.order({ :category => :desc })
 
       matching_projects = @primary_residence.projects.all
-      @list_of_projects = matching_projects.order({ :created_at => :desc })
+      @list_of_projects = matching_projects.order({ :status => :desc, :priority => :asc, :created_at => :asc })
 
       matching_contacts = @primary_residence.owner.contacts.all
       @list_of_contacts = matching_contacts.order({ :created_at => :desc })

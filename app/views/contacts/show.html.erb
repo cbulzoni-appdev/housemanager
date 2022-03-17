@@ -15,8 +15,12 @@
 
           <div class="font-bold"><%= @the_contact.contact_type %></div>
           <address class="m-t-md">
+            <% if @the_contact.phone_number != nil && @the_contact.phone_number != "" %>
               <abbr title="Phone">P:</abbr> <%= @the_contact.phone_number %><br>
+            <% end %>
+            <% if @the_contact.email != nil && @the_contact.email != "" %>
               <abbr title="Email">E:</abbr> <%= @the_contact.email %>
+            <% end %>
           </address>
   
           <div class="contact-box-footer">

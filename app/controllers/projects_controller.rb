@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   def index
     matching_projects = @current_user.projects.all
 
-    @q = matching_projects.order({ :priority => :asc, :status => :desc }).ransack(params[:q])
+    @q = matching_projects.order({ :status => :desc, :priority => :asc, :created_at => :asc }).ransack(params[:q])
 
     @list_of_projects = @q.result
 

@@ -27,7 +27,7 @@
           <% if an_appliance.service_due != nil %>
             <% if (an_appliance.service_due - Date.today).to_i < 60 %>
               <a href="/contacts/<%= an_appliance.contact_id %>" class="list-group-item list-group-item-action">
-                Your <%= an_appliance.appliance_type %> is due for maintenance in <%= (an_appliance.service_due - Date.today).to_i %> days.
+                Your <strong><%= an_appliance.appliance_type %></strong> is due for maintenance in <strong><%= (an_appliance.service_due - Date.today).to_i %> days</strong>.
                 Call <%= an_appliance.contact.contact_name %> for service.
               </a>
             <% end %>
@@ -35,14 +35,14 @@
         <% end %>
         
         <% @list_of_projects.where({ :status => "In Progress" }).each do |a_project| %>
-          <a href="projects/<%= a_project.id %>" class="list-group-item list-group-item-action">
-            Your project "<%= a_project.description %>" is still in progress.
+          <a href="/projects" class="list-group-item list-group-item-action">
+            Your <%= a_project.priority[2..-1] %> priority project is still in progress: <b><%= a_project.description %></b>
           </a>
         <% end %>
 
         <% @list_of_projects.where({ :status => "Not Yet Started" }).each do |a_project| %>
-          <a href="projects/<%= a_project.id %>" class="list-group-item list-group-item-action">
-            You haven't started your project "<%= a_project.description %>"
+          <a href="/projects" class="list-group-item list-group-item-action">
+            You haven't started your <%= a_project.priority[2..-1] %> priority project: <b><%= a_project.description %></b>
           </a>
         <% end %>
       </div>
