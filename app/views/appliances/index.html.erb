@@ -240,9 +240,9 @@
                 <option value=nil selected="selected">(None)</option>
                 <% @current_user.contacts.each do |a_contact|%>
                   <% if a_contact.contact_name != nil && a_contact.contact_name != "" %>
-                    <Option value="<%= a_contact.id %>"><%= a_contact.contact_name %></option>
+                    <Option value="<%= a_contact.id %>"><%= a_contact.contact_name + " - " + a_contact.contact_type %></option>
                   <% else %>
-                    <Option value="<%= a_contact.id %>"><%= a_contact.company_name %></option>
+                    <Option value="<%= a_contact.id %>"><%= a_contact.company_name + " - " + a_contact.contact_type  %></option>
                   <% end %>
                 <% end %>
               </select>
