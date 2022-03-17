@@ -76,12 +76,6 @@
           <td>
             <%= a_contact.phone_number %>
           </td>
-
-          <td>
-            <a href="/contacts/<%= a_contact.id %>">
-              Edit details
-            </a>
-          </td>
           
           <td>
 
@@ -118,8 +112,10 @@
 
                       <textarea class="form-control" id="message_box" name="query_message" rows="3"></textarea>
 
+                      <p>NOTE: Text will not be sent from your phone number, so if a response is required you should provide instructions for contacting you in the message.</p>
+
                       <button type="submit" class="btn btn-primary">
-                        Send Text
+                        Send
                       </button>
                     </form>
                   </div>
@@ -153,8 +149,10 @@
 
                       <textarea class="form-control" id="message_box" name="query_message" rows="3"></textarea>
 
+                      <p>NOTE: Email will be sent from your email address on file: <%= @current_user.email %></p>
+
                       <button type="submit" class="btn btn-primary">
-                        Send Email
+                        Send
                       </button>
                     </form>
                   </div>
@@ -165,6 +163,12 @@
               </div>
             </div>
 
+          </td>
+
+          <td>
+            <a href="/contacts/<%= a_contact.id %>">
+              Edit details
+            </a>
           </td>
         </tr>
         <% end %>
