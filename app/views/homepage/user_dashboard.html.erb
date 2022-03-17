@@ -28,7 +28,7 @@
             <% if (an_appliance.service_due - Date.today).to_i < 60 %>
               <a href="/contacts/<%= an_appliance.contact_id %>" class="list-group-item list-group-item-action">
                 Your <strong><%= an_appliance.appliance_type %></strong> is due for maintenance in <strong><%= (an_appliance.service_due - Date.today).to_i %> days</strong>.
-                Call <%= an_appliance.contact.contact_name %> for service.
+                Contact <%= an_appliance.contact.contact_name %> for service.
               </a>
             <% end %>
           <% end %>

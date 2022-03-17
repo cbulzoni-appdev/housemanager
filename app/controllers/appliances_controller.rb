@@ -19,7 +19,7 @@ class AppliancesController < ApplicationController
 
     @the_appliance = matching_appliances.at(0)
 
-    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Range","Oven",
+    @possible_appliance_types = ["Air Conditioner","Water Heater","Sump Pump","Furnace","Refrigerator","Range","Oven",
                                 "Stove","Microwave","Dishwasher","Washing Machine","Dryer","Other"]
 
     if @the_appliance.appliance_type == "Furnace"
